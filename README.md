@@ -1,1 +1,1 @@
-This is command Online-Store task for the Rolling Scopes School
+This is develop branch for this repository.
