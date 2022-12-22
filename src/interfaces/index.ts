@@ -1,2 +1,2 @@
-import LoaderInterface from "./loader-interface";
-export {LoaderInterface};
+import LoaderInterface from './loader-interface';
+export { LoaderInterface };

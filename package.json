@@ -9,7 +9,6 @@
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
     "serve": "webpack serve",
-    "prettier": "prettier --write ./src"
   },
   "repository": {
     "type": "git",
