@@ -1,4 +1,4 @@
-import { IncomeData } from "./incomeData"
-import { ProductData } from "./productData"
+import { IncomeData } from './incomeData';
+import { ProductData } from './productData';
 
-export {IncomeData, ProductData}
+export { IncomeData, ProductData };
