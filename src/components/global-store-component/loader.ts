@@ -10,8 +10,7 @@ class Loader implements LoaderInterface {
         this.baseLink = baseLink;
     }
     private makeUrl(endpoint: string): string {
-        const url = `${this.baseLink}${endpoint}`;
-        return url;
+        return `${this.baseLink}${endpoint}`;
     }
     private errorHandler(error: unknown): void {
         console.error(error);
