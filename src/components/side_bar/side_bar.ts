@@ -1,19 +1,7 @@
 import './side_bar.scss'
-import {IncomeData, ProductData} from "../../interfaces/index"
 
-const category: Set<string>= new Set;
-const brand: Set<string> = new Set;
-
-export function sortDataByCategory(data: IncomeData): void {
-    console.log(data.products)
-    data.products.forEach((item: ProductData) => category.add(item.category))
-    console.log('category: ', category, category.size)
-}
-
-export function sortDataByBrand(data: IncomeData): void {
-    data.products.forEach((item: ProductData) => brand.add(item.brand))
-    console.log('brand: ', brand, brand.size)
-}
+export const category: Set<string>= new Set;
+export const brand: Set<string> = new Set;
 
 export function renderSideBar():void {
     const main = <HTMLElement>document.querySelector('.main');
@@ -55,7 +43,7 @@ export function renderSideBar():void {
     for (const el of brand) {
         const div: HTMLElement = document.createElement('div');
         div.classList.add('checkbox_container');
-        const label: HTMLElement = document.createElement('label');        
+        const label: HTMLElement = document.createElement('label');
         const checkbox: HTMLElement = document.createElement('input');
         label.textContent = el;
         label.setAttribute('for', el);
