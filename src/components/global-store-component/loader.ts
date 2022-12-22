@@ -1,31 +1,30 @@
-import {LoaderInterface} from '../../../interfaces/index';
+import { LoaderInterface } from '../../interfaces/index';
 
 type Data = {
-  [index: string]: string;
-}
+    [index: string]: string;
+};
 
 class Loader implements LoaderInterface {
-  baseLink: string;
-  constructor(baseLink: string) {
-    this.baseLink = baseLink;
-  }
-  private makeUrl(endpoint:string): string {
-    const url = `${this.baseLink}${endpoint}`;
-    return url;
-  }
-  private errorHandler(res:Response): Response | never {
-    if(!res.ok) {
-      throw new Error(res.statusText)
+    baseLink: string;
+    constructor(baseLink: string) {
+        this.baseLink = baseLink;
     }
-    return res;
-  }
-  getRespDataFromURL(method: string, endpoint:string, callback:(data: Data) => void): void {
-    fetch(this.makeUrl(endpoint), {method})
-    .then(this.errorHandler)
-    .then((res) => res.json())
-    .then((data: Data) => callback(data))
-  }
-
+    private makeUrl(endpoint: string): string {
+        const url = `${this.baseLink}${endpoint}`;
+        return url;
+    }
+    private errorHandler(error: unknown): void {
+        console.error(error);
+    }
+    async getRespDataFromURL(method: string, endpoint: string, callback: (data: Data) => void): Promise<void> {
+        try {
+            const dataResp = await fetch(this.makeUrl(endpoint), { method });
+            const data = await dataResp.json();
+            callback(data);
+        } catch (e) {
+            this.errorHandler(e);
+        }
+    }
 }
 
 export default Loader;
