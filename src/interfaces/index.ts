@@ -1,2 +1,2 @@
-import LoaderInterface from "./global-store-controller/loader-interface";
+import LoaderInterface from "./loader-interface";
 export {LoaderInterface};
