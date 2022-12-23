@@ -1,3 +1,3 @@
-import Loader from './components/global-store-component/loader';
+import { renderHeader } from "./components/header/header";
 
-const loader = Loader;
+renderHeader(document.body)
