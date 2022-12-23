@@ -1,0 +1,151 @@
+$tag-color: orange;
+$tag-hovered-color: green;
+$card-button-hover: #31302e;
+
+.store-card {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    width: 250px;
+    border: 2px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    padding-bottom: 5px;
+}
+
+.store-card__img {
+    height: 200px;
+}
+
+.store-card__title {
+    font: normal bold 20px/120% 'Roboto';
+}
+
+.store-card__price {
+    font: italic bold 18px/120% 'Roboto';
+}
+
+.store-card__old-price {
+    text-decoration: line-through;
+    color: grey;
+}
+
+.store-card__rating {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+
+    background-color: $tag-color;
+    font-weight: bold;
+    padding: 4px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $tag-hovered-color;
+    }
+}
+
+.store-card__category {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+
+    background-color: $tag-color;
+    font-weight: bold;
+    padding: 4px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $tag-hovered-color;
+    }
+}
+
+.store-card__brand {
+    position: absolute;
+    top: 30px;
+    right: 3px;
+
+    background-color: $tag-color;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 4px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $tag-hovered-color;
+    }
+}
+
+.store-card__buttons-container {
+    display: flex;
+    gap: 10px;
+}
+.store-card__button {
+    background-color: transparent;
+    font: normal bold 20px/120% 'Roboto';
+    border: 1px solid black;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: $card-button-hover;
+        color: white;
+    }
+}
+
+.store-card_small {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    padding-bottom: 5px;
+
+    .store-card__title {
+        position: absolute;
+        top: 5px;
+        padding: 5px;
+        border-radius: 10px;
+        background-color: $tag-color;
+    }
+    .store-card__price,
+    .store-card__old-price,
+    .store-card__rating,
+    .store-card__category,
+    .store-card__brand {
+        display: none;
+    }
+    .store-card__buttons-container {
+        position: absolute;
+        bottom: 5px;
+
+        display: flex;
+        gap: 10px;
+    }
+    .store-card__button {
+        background-color: $tag-color;
+        font: normal bold 20px/120% 'Roboto';
+        border: 0;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: $card-button-hover;
+            color: white;
+        }
+    }
+}

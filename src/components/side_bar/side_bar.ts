@@ -1,9 +1,9 @@
-import './side_bar.scss'
+import './side_bar.scss';
 
-export const category: Set<string>= new Set;
-export const brand: Set<string> = new Set;
+export const category: Set<string> = new Set();
+export const brand: Set<string> = new Set();
 
-export function renderSideBar():void {
+export function renderSideBar(): void {
     const main = <HTMLElement>document.querySelector('.main');
 
     const container: HTMLElement = document.createElement('div');
@@ -15,7 +15,6 @@ export function renderSideBar():void {
     btnReset.classList.add('reset_btn', 'btn');
     btnReset.textContent = 'Reset';
     bntsContainer.append(btnReset);
-
 
     const categoryContainer: HTMLElement = document.createElement('div');
     categoryContainer.classList.add('category__container', 'container');
@@ -55,6 +54,4 @@ export function renderSideBar():void {
     brandContainer.append(brandUnorderedList);
     container.append(bntsContainer, categoryContainer, brandContainer);
     main.append(container);
-
-
 }

@@ -9,5 +9,5 @@ export interface ProductData {
     brand: string;
     category: string;
     thumbnail: string;
-    images: string[]
+    images: string[];
 }
