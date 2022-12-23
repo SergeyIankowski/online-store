@@ -1,4 +1,4 @@
-import { ProductData } from "./index"
+import { ProductData } from './index';
 export interface IncomeData {
-    products: ProductData[]
+    products: ProductData[];
 }

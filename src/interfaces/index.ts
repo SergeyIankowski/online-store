@@ -1,5 +1,5 @@
-import { IncomeData } from "./incomeData";
-import { ProductData } from "./productData";
+import { IncomeData } from './incomeData';
+import { ProductData } from './productData';
 import LoaderInterface from './loader-interface';
 
-export {IncomeData, ProductData, LoaderInterface}
+export { IncomeData, ProductData, LoaderInterface };
