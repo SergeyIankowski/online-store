@@ -8,7 +8,7 @@ class Loader implements LoaderInterface {
         return `${this.baseLink}${endpoint}`;
     }
     private errorHandler(error: unknown): void {
-        console.error(error);
+        console.error('getting data error from remote server',error);
     }
     async getRespDataFromURL(method: string, endpoint: string, callback: (data: IncomeData) => void): Promise<void> {
         try {
