@@ -1,10 +1,9 @@
 import { ProductData } from '../../interfaces/productData';
 import './store-card.scss';
 
-export default function renderStoreCard(obj: ProductData, size: string, targetNode: HTMLElement): void {
-    console.log(size);
+export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: HTMLElement): void {
     const card: HTMLElement = document.createElement('div');
-    card.classList.add('store-cards__item', 'store-card_small');
+    card.classList.add(`store-cards__item`, `store-card${isSmall ? '_small' : ''}`);
 
     const image: HTMLImageElement = document.createElement('img');
     image.classList.add('store-card__img');
