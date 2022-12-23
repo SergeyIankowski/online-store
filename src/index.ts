@@ -1,1 +1,3 @@
-console.log("Hello World!");
+import { renderHeader } from "./components/header/header";
+
+renderHeader(document.body)
