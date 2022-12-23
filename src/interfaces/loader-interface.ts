@@ -1,9 +1,6 @@
-type Data = {
-    [index: string]: string;
-};
-
+import { IncomeData } from "./incomeData";
 interface LoaderInterface {
-    getRespDataFromURL(method: string, endpoint: string, callback: (data: Data) => void): void;
+    getRespDataFromURL(method: string, endpoint: string, callback: (data: IncomeData) => void): void;
 }
 
 export default LoaderInterface;
