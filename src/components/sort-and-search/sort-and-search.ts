@@ -34,7 +34,7 @@ export function renderSortAndSearch(targetNode: HTMLElement) {
     selectOptions.forEach((item) => sorting.append(createOptionNode(item)));
 
     const found: HTMLParagraphElement = document.createElement('p');
-    found.classList.add('sort-and-search__found','found-board');
+    found.classList.add('sort-and-search__found', 'found-board');
     found.innerText = 'Found: ';
 
     const foundValue: HTMLSpanElement = document.createElement('span');
@@ -51,19 +51,19 @@ export function renderSortAndSearch(targetNode: HTMLElement) {
     sizesContainer.classList.add('sort-and-search__sizes-container');
 
     const iconBig: HTMLElement = document.createElement('div');
-    iconBig.classList.add('sort-and-search__sizes-image','sort-and-search__sizes-image_big');
-    for(let key = 0; key < 16; key += 1) {
-      const cell: HTMLElement = document.createElement('div');
-      cell.classList.add('cell');
-      iconBig.append(cell);
+    iconBig.classList.add('sort-and-search__sizes-image', 'sort-and-search__sizes-image_big');
+    for (let key = 0; key < 16; key += 1) {
+        const cell: HTMLElement = document.createElement('div');
+        cell.classList.add('cell');
+        iconBig.append(cell);
     }
 
     const iconSmall: HTMLElement = document.createElement('div');
-    iconSmall.classList.add('sort-and-search__sizes-image','sort-and-search__sizes-image_small');
-    for(let key = 0; key < 64; key += 1) {
-      const cell: HTMLElement = document.createElement('div');
-      cell.classList.add('cell');
-      iconSmall.append(cell);
+    iconSmall.classList.add('sort-and-search__sizes-image', 'sort-and-search__sizes-image_small');
+    for (let key = 0; key < 64; key += 1) {
+        const cell: HTMLElement = document.createElement('div');
+        cell.classList.add('cell');
+        iconSmall.append(cell);
     }
 
     sizesContainer.append(iconBig, iconSmall);
