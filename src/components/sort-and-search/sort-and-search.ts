@@ -1,3 +1,4 @@
+import './sort-and-search.scss';
 type CreateOptionNodeArguments = {
     value: string;
     className: string;
