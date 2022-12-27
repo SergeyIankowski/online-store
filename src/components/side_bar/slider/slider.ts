@@ -5,7 +5,7 @@ import './slider.scss'
 import { renderStockSlider } from "./stock_slider/stock_slider";
 
 export const price: Array<number> = new Array;
-export const stock: Set<number> = new Set;
+export const stock: Array<number> = new Array;
 const maxPrice: number = getMaxOfArray(price);
 const minPrice: number = getMinOfArray(price);
 
