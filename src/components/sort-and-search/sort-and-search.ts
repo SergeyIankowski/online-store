@@ -1,3 +1,4 @@
+import { changeCardSize } from '../../utils/changeCardSize';
 import './sort-and-search.scss';
 type CreateOptionNodeArguments = {
     value: string;
@@ -39,6 +40,7 @@ export function renderSortAndSearch(targetNode: HTMLElement) {
 
     const foundValue: HTMLSpanElement = document.createElement('span');
     foundValue.classList.add('found-board__value');
+    foundValue.innerText = '0';
 
     found.append(foundValue);
 
@@ -51,7 +53,11 @@ export function renderSortAndSearch(targetNode: HTMLElement) {
     sizesContainer.classList.add('sort-and-search__sizes-container');
 
     const iconBig: HTMLElement = document.createElement('div');
-    iconBig.classList.add('sort-and-search__sizes-image', 'sort-and-search__sizes-image_big');
+    iconBig.classList.add(
+        'sort-and-search__sizes-image',
+        'sort-and-search__sizes-image_big',
+        'sort-and-search__sizes-image_colored'
+    );
     for (let key = 0; key < 16; key += 1) {
         const cell: HTMLElement = document.createElement('div');
         cell.classList.add('cell');
@@ -66,8 +72,18 @@ export function renderSortAndSearch(targetNode: HTMLElement) {
         iconSmall.append(cell);
     }
 
-    sizesContainer.append(iconBig, iconSmall);
+    iconBig.addEventListener('click', () => {
+        changeCardSize(true);
+        iconSmall.classList.remove('sort-and-search__sizes-image_colored');
+        iconBig.classList.add('sort-and-search__sizes-image_colored');
+    });
+    iconSmall.addEventListener('click', () => {
+        changeCardSize(false);
+        iconSmall.classList.add('sort-and-search__sizes-image_colored');
+        iconBig.classList.remove('sort-and-search__sizes-image_colored');
+    });
 
+    sizesContainer.append(iconBig, iconSmall);
     sortAndSearchContainer.append(sorting, found, searchInput, sizesContainer);
 
     targetNode.append(sortAndSearchContainer);
