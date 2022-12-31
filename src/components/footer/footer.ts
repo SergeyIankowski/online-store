@@ -1,11 +1,12 @@
 import './footer.css';
 
-export class Footer {
-    render() {
-        const footerEl = <HTMLElement>document.querySelector('.footer');
+export function renderFooter(targetNode: HTMLElement) {
 
-        const container: HTMLElement = document.createElement('div');
-        container.classList.add('container');
+        const footer: HTMLElement = document.createElement('footer');
+        footer.classList.add('footer');
+
+        const wrapper: HTMLDivElement = document.createElement('div');
+        wrapper.classList.add('wrapper');
 
         const linksContainer: HTMLElement = document.createElement('div');
         linksContainer.classList.add('links__container', 'container');
@@ -34,7 +35,7 @@ export class Footer {
         imgLink.append(imgCourse);
         imgContainer.append(imgLink);
         linksContainer.append(firstAuthor, secondAuthor);
-        container.append(linksContainer, imgContainer);
-        footerEl.append(container);
+        wrapper.append(linksContainer, imgContainer);
+        footer.append(wrapper);
+        targetNode.append(footer);
     }
-}
