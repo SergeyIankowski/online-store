@@ -5,13 +5,10 @@ $card-button-hover: #31302e;
 .store-card {
     position: relative;
 
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // justify-content: center;
-
     display: grid;
     grid-template-areas: 'a b' 'a c' 'a d';
+    justify-items: start;
+
     box-sizing: border-box;
     width: 100%;
     border: 2px solid black;
