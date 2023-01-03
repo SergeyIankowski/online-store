@@ -5,13 +5,15 @@ $card-button-hover: #31302e;
 .store-card {
     position: relative;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
 
+    display: grid;
+    grid-template-areas: "a b" "a c" "a d";
     box-sizing: border-box;
-    width: 250px;
+    width: 100%;
     border: 2px solid black;
     border-radius: 10px;
     overflow: hidden;
@@ -19,7 +21,12 @@ $card-button-hover: #31302e;
 }
 
 .store-card__img {
-    height: 200px;
+    max-height: 200px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    grid-area: a;
+
 }
 
 .store-card__title {
@@ -53,8 +60,8 @@ $card-button-hover: #31302e;
 
 .store-card__category {
     position: absolute;
-    top: 3px;
-    right: 3px;
+    top: 36px;
+    left: 3px;
 
     background-color: $tag-color;
     font-weight: bold;
@@ -69,8 +76,8 @@ $card-button-hover: #31302e;
 
 .store-card__brand {
     position: absolute;
-    top: 30px;
-    right: 3px;
+    top: 69px;
+    left: 3px;
 
     background-color: $tag-color;
     text-transform: uppercase;
@@ -147,5 +154,11 @@ $card-button-hover: #31302e;
             background-color: $card-button-hover;
             color: white;
         }
+    }
+}
+
+@media (max-width: 560px) {
+    .store-card__rating, .store-card__category, .store-card__brand {
+        font: normal bold 10px/120% 'Roboto', sans-serif;
     }
 }
