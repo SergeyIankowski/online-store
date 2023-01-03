@@ -11,7 +11,7 @@ $card-button-hover: #31302e;
     // justify-content: center;
 
     display: grid;
-    grid-template-areas: "a b" "a c" "a d";
+    grid-template-areas: 'a b' 'a c' 'a d';
     box-sizing: border-box;
     width: 100%;
     border: 2px solid black;
@@ -26,7 +26,6 @@ $card-button-hover: #31302e;
     width: auto;
     height: auto;
     grid-area: a;
-
 }
 
 .store-card__title {
@@ -158,7 +157,9 @@ $card-button-hover: #31302e;
 }
 
 @media (max-width: 560px) {
-    .store-card__rating, .store-card__category, .store-card__brand {
+    .store-card__rating,
+    .store-card__category,
+    .store-card__brand {
         font: normal bold 10px/120% 'Roboto', sans-serif;
     }
 }
