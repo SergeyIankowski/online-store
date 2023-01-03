@@ -1,8 +1,4 @@
-
-export function renderCustomSlider(
-    maxPrice: number,
-    minPrice: number,
-    ID: string):void {
+export function renderCustomSlider(maxPrice: number, minPrice: number, ID: string): void {
     const main = <HTMLElement>document.querySelector('.main');
 
     const rangeContainer: HTMLDivElement = document.createElement('div');
@@ -11,7 +7,7 @@ export function renderCustomSlider(
     const nameSlider: HTMLParagraphElement = document.createElement('p');
     nameSlider.textContent = ID;
     nameSlider.classList.add('name_slider');
-    
+
     const slidersControl: HTMLDivElement = document.createElement('div');
     slidersControl.classList.add('sliders_control');
     const fromSliderPrice: HTMLInputElement = document.createElement('input');
@@ -42,7 +38,7 @@ export function renderCustomSlider(
     formControlContainerTimeInputMin.setAttribute('value', `${minPrice}`);
     formControlContainerTimeInputMin.setAttribute('min', `${minPrice}`);
     formControlContainerTimeInputMin.setAttribute('max', `${maxPrice}`);
-    formControlContainerMin.append(formControlContainerTimeMin,formControlContainerTimeInputMin);
+    formControlContainerMin.append(formControlContainerTimeMin, formControlContainerTimeInputMin);
 
     const formControlContainerMax: HTMLDivElement = document.createElement('div');
     formControlContainerMax.classList.add('form_control_container');
@@ -57,8 +53,8 @@ export function renderCustomSlider(
     formControlContainerTimeInputMax.setAttribute('min', `${minPrice}`);
     formControlContainerTimeInputMax.setAttribute('max', `${maxPrice}`);
     formControlContainerMax.append(formControlContainerTimeMax, formControlContainerTimeInputMax);
-    
+
     formControl.append(formControlContainerMin, formControlContainerMax);
     rangeContainer.append(nameSlider, slidersControl, formControl);
     main.append(rangeContainer);
-};
+}

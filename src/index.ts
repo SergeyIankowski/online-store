@@ -1,6 +1,4 @@
-import { renderFooter } from "./components/footer/footer";
-import { renderHeader } from "./components/header/header";
+import { renderApp } from './components/app/app';
 import './sass/main.scss';
 
-renderHeader(document.body);
-renderFooter(document.body);
+renderApp(document.body);

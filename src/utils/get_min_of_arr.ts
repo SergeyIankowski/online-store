@@ -1,3 +1,3 @@
-export function getMinOfArray(arr: number []): number {
-  return Math.min(...arr);
+export function getMinOfArray(arr: number[]): number {
+    return Math.min(...arr);
 }
