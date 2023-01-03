@@ -1,5 +1,7 @@
+@import '../../sass/abstract/variables';
+
 .container {
-    border: 3px solid orange;
+    border: $section-border-width solid $sections-border-color;
     border-radius: 20px;
     padding: 10px;
 }

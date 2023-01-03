@@ -1,9 +1,11 @@
+@import '../../sass/abstract/variables';
+
 .header {
     .wrapper {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border: 2px solid #f05454;
+        border: $section-border-width solid $sections-border-color;
         border-radius: 20px;
         padding: 10px;
     }

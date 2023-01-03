@@ -1,3 +1,5 @@
+@import '../../sass/abstract/variables';
+
 .footer {
     .wrapper {
         display: flex;
@@ -6,7 +8,7 @@
         align-items: center;
         gap: 5px;
 
-        border: 3px solid orange;
+        border: $section-border-width solid $sections-border-color;
         border-radius: 20px;
         padding: 10px;
     }
