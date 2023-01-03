@@ -1,0 +1,44 @@
+@import '../../sass/abstract/variables';
+
+.footer {
+    .wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 5px;
+
+        border: $section-border-width solid $sections-border-color;
+        border-radius: 20px;
+        padding: 10px;
+    }
+}
+
+.authors {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    font: normal bold 20px/120% 'Roboto', sans-serif;
+}
+
+.authors__author-link {
+    text-decoration: none;
+    color: black;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.course-image-container__icon {
+    height: 50px;
+}
+
+@media (max-width: 599px) {
+    .authors {
+        font: normal bold 13px/120% 'Roboto', sans-serif;
+    }
+    .course-image-container__icon {
+        height: 35px;
+    }
+}

@@ -3,11 +3,9 @@ import './side_bar.scss';
 export const category: Set<string> = new Set();
 export const brand: Set<string> = new Set();
 
-export function renderSideBar(): void {
-    const main = <HTMLElement>document.querySelector('.main');
-
+export function renderSideBar(targetNode: HTMLElement): void {
     const container: HTMLElement = document.createElement('div');
-    container.classList.add('side_bar__container', 'container');
+    container.classList.add('side-bar__container', 'container');
 
     const bntsContainer: HTMLElement = document.createElement('div');
     bntsContainer.classList.add('buttons_container', 'container');
@@ -53,5 +51,5 @@ export function renderSideBar(): void {
     }
     brandContainer.append(brandUnorderedList);
     container.append(bntsContainer, categoryContainer, brandContainer);
-    main.append(container);
+    targetNode.append(container);
 }

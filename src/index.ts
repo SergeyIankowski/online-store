@@ -1,3 +1,4 @@
-import { renderHeader } from "./components/header/header";
+import { renderApp } from './components/app/app';
+import './sass/main.scss';
 
-renderHeader(document.body)
+renderApp(document.body);

@@ -1,3 +1,3 @@
-export function getMaxOfArray(arr: number []): number {
+export function getMaxOfArray(arr: number[]): number {
     return Math.max(...arr);
 }

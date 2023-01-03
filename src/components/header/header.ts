@@ -2,7 +2,7 @@ import Bag from '../../assets/img/bag-icon.svg';
 import Cart from '../../assets/img/cart-icon.svg';
 import './header.scss';
 
-export function renderHeader(targetNode: HTMLElement): void {
+export function renderHeader(targetNode: HTMLElement | DocumentFragment): void {
     const header: HTMLElement = document.createElement('header');
     header.classList.add('header');
 

@@ -1,3 +1,5 @@
+@import '../../sass/abstract/variables';
+
 .sort-and-search {
     display: flex;
     flex-flow: row wrap;
@@ -5,12 +7,12 @@
     align-items: center;
     gap: 10px;
     padding: 10px;
-    border: 3px solid orange;
+    border: $section-border-width solid $sections-border-color;
     border-radius: 20px;
 }
 .sorting {
     font: normal normal 20px/120% 'Roboto';
-    border: 3px solid orange;
+    border: $section-border-width solid $sections-border-color;
     border-radius: 20px;
     background: transparent;
     padding: 2px;
@@ -23,7 +25,7 @@
     font: normal bold 25px/120% 'Roboto', sans-serif;
 }
 .search-input {
-    border: 3px solid orange;
+    border: $section-border-width solid $sections-border-color;
     border-radius: 20px;
     padding: 8px;
     &::placeholder {
@@ -68,12 +70,27 @@
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 920px) {
     .sort-and-search {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         justify-items: center;
         align-items: center;
+    }
+    .search-input {
+        width: 196px;
+    }
+    .found-board {
+        font: normal bold 15px/120% 'Roboto', sans-serif;
+    }
+}
+
+@media (max-width: 530px) {
+    .sort-and-search {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
     }
     .search-input {
         width: 196px;
