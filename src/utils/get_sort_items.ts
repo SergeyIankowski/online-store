@@ -6,13 +6,11 @@ export let renderList:ProductData[] = [];
 export function getSortItemsByCategory(data:IncomeData, evt: string): void {
     const newData = data.products.filter((el:ProductData) => el.category === evt)
     newData.forEach((el:ProductData) => renderList.push(el))
-    console.log(renderList)
 };
 
 export function getSortItemsByBrand(data:IncomeData, evt: string): void {
     const newData = data.products.filter((el:ProductData) => el.brand === evt)
     newData.forEach((el:ProductData) => renderList.push(el))
-    console.log(renderList)
 };
 
 
@@ -25,7 +23,6 @@ export function getSortItems(data: IncomeData, field: 'price'|'rating'|'discount
         return 1
         }
     });
-    console.log(newData);
 };
 
 export function getSortItemsReverse(data: IncomeData, field: 'price'|'rating'|'discountPercentage'): void {
@@ -36,5 +33,4 @@ export function getSortItemsReverse(data: IncomeData, field: 'price'|'rating'|'d
         return 1
         }
     });
-    console.log(newData);
 }
