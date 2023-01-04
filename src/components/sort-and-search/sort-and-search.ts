@@ -7,7 +7,7 @@ type CreateOptionNodeArguments = {
     className: string;
     attributes: string[];
     text: string;
-    callback?: (e: Event) => ProductData[]
+    callback?: (e: Event) => ProductData[];
 };
 
 const createOptionNode = (obj: CreateOptionNodeArguments) => {

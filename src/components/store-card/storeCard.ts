@@ -3,7 +3,7 @@ import './store-card.scss';
 
 export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: HTMLElement): void {
     const card: HTMLElement = document.createElement('div');
-    card.classList.add(`store-cards__item`,'store-card', `store-card${isSmall ? '_small' : ''}`);
+    card.classList.add(`store-cards__item`, 'store-card', `store-card${isSmall ? '_small' : ''}`);
 
     const image: HTMLImageElement = document.createElement('img');
     image.classList.add('store-card__img');
