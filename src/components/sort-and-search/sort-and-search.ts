@@ -1,6 +1,5 @@
 import { changeCardSize } from '../../utils/changeCardSize';
-import { searchDataItems } from '../../utils/searchItems';
-import { store } from '../store/store';
+import { findCards } from '../../utils/findCards';
 import './sort-and-search.scss';
 type CreateOptionNodeArguments = {
     value: string;
@@ -85,11 +84,7 @@ export function renderSortAndSearch(targetNode: HTMLElement) {
         iconBig.classList.remove('sort-and-search__sizes-image_colored');
     });
 
-    searchInput.oninput = (e) => {
-        const initialData = store.getCardsFromStore();
-        const foundData = searchDataItems(initialData, (e.target as HTMLInputElement).value);
-        store.setCardsToStoreAndRender(foundData);
-    };
+    searchInput.oninput = findCards;
 
     sizesContainer.append(iconBig, iconSmall);
     sortAndSearchContainer.append(sorting, found, searchInput, sizesContainer);
