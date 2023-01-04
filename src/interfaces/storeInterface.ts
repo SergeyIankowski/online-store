@@ -6,5 +6,6 @@ export interface StoreInterface {
     boardNode: HTMLElement;
     cardSize: boolean;
     setCardsToStoreAndRender(cards: ProductData[]): void;
-    getCardsFromStore(): ProductData[];
+    getInitialCardsFromStore(): ProductData[];
+    getSortedCardsFromStore(): ProductData[];
 }

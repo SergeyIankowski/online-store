@@ -25,8 +25,11 @@ export class Store implements StoreInterface {
 
         this.renderBoard();
     }
-    public getCardsFromStore() {
+    public getInitialCardsFromStore() {
         return this.initialCards;
+    }
+    public getSortedCardsFromStore() {
+        return this.sortedCards;
     }
     private renderBoard(): void {
         renderCards(this.sortedCards, this.cardSize, this.boardNode);

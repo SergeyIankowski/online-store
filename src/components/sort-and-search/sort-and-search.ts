@@ -1,3 +1,4 @@
+import { ProductData } from '../../interfaces/productData';
 import { changeCardSize } from '../../utils/changeCardSize';
 import { findCards } from '../../utils/findCards';
 import './sort-and-search.scss';
@@ -6,6 +7,7 @@ type CreateOptionNodeArguments = {
     className: string;
     attributes: string[];
     text: string;
+    callback?: (e: Event) => ProductData[]
 };
 
 const createOptionNode = (obj: CreateOptionNodeArguments) => {
@@ -14,6 +16,7 @@ const createOptionNode = (obj: CreateOptionNodeArguments) => {
     optionNode.value = obj.value;
     obj.attributes.forEach((attribute) => optionNode.setAttribute(attribute, 'true'));
     optionNode.innerText = obj.text;
+    optionNode.onclick = obj.callback ? obj.callback : null;
     return optionNode;
 };
 
