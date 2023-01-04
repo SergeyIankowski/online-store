@@ -86,7 +86,8 @@ export function renderSortAndSearch(targetNode: HTMLElement) {
     });
 
     searchInput.oninput = (e) => {
-        const foundData = searchDataItems(store.getCardsFromStore(), (e.target as HTMLInputElement).value);
+        const initialData = store.getCardsFromStore();
+        const foundData = searchDataItems(initialData, (e.target as HTMLInputElement).value);
         store.setCardsToStoreAndRender(foundData);
     };
 
