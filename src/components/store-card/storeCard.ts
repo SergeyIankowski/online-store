@@ -1,6 +1,8 @@
 import { ProductData } from '../../interfaces/productData';
 import './store-card.scss';
 
+export const basket = new Map;
+
 export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: HTMLElement): void {
     const card: HTMLElement = document.createElement('div');
     card.classList.add(`store-cards__item`, 'store-card', `store-card${isSmall ? '_small' : ''}`);
@@ -39,19 +41,38 @@ export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: 
     const buttonsContainer: HTMLElement = document.createElement('div');
     buttonsContainer.classList.add('store-card__buttons-container');
 
-    const createButtonCardNode = (text: string, callback: (e: Event) => void): HTMLButtonElement => {
+    const createButtonCardNode = ( text: string, callback: (e: Event) => void, id: number): HTMLButtonElement => {
         const button: HTMLButtonElement = document.createElement('button');
+        const newId: number | string = id;
         button.classList.add('store-card__button');
+        button.classList.add(text);
+        button.setAttribute('data-id', newId.toString())
         button.innerText = text;
         button.onclick = (e: MouseEvent) => {
             callback(e);
         };
         return button;
     };
-    const addButton = createButtonCardNode('Add', () => {});
-    const detailsButton = createButtonCardNode('Details', () => {});
+    const addButton = createButtonCardNode('Add', () => {}, obj.id);
+    const detailsButton = createButtonCardNode('Details', () => {}, obj.id);
     buttonsContainer.append(addButton, detailsButton);
 
     card.append(image, head, rating, price, category, brand, buttonsContainer);
     targetNode.append(card);
+
+    const add = () => {
+        basket.set(obj, 1);
+        addButton.innerText = 'Remove';
+        addButton.removeEventListener('click', add);
+        addButton.addEventListener('click', removeEvt);
+    }
+
+    const removeEvt = () => {
+        basket.delete(obj);
+        addButton.innerText = 'Add';
+        addButton.removeEventListener('click', removeEvt);
+        addButton.addEventListener('click', add);
+    }
+
+    addButton.addEventListener('click', add)
 }
