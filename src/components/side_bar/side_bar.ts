@@ -1,4 +1,5 @@
 import './side_bar.scss';
+import { renderSlider } from './slider/slider';
 
 export const category: Set<string> = new Set();
 export const brand: Set<string> = new Set();
@@ -12,7 +13,10 @@ export function renderSideBar(targetNode: HTMLElement): void {
     const btnReset: HTMLElement = document.createElement('button');
     btnReset.classList.add('reset_btn', 'btn');
     btnReset.textContent = 'Reset';
-    bntsContainer.append(btnReset);
+    const btnCopyLink: HTMLElement = document.createElement('button');
+    btnCopyLink.classList.add('copy_link_btn', 'btn');
+    btnCopyLink.textContent = 'Copy Link';
+    bntsContainer.append(btnReset, btnCopyLink);
 
     const categoryContainer: HTMLElement = document.createElement('div');
     categoryContainer.classList.add('category__container', 'container');
@@ -52,4 +56,5 @@ export function renderSideBar(targetNode: HTMLElement): void {
     brandContainer.append(brandUnorderedList);
     container.append(bntsContainer, categoryContainer, brandContainer);
     targetNode.append(container);
+    renderSlider(container);
 }
