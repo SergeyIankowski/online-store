@@ -1,7 +1,7 @@
 import { ProductData } from '../../interfaces/productData';
 import './store-card.scss';
 
-export const basket = new Map;
+export const basket = new Map();
 
 export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: HTMLElement): void {
     const card: HTMLElement = document.createElement('div');
@@ -41,12 +41,12 @@ export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: 
     const buttonsContainer: HTMLElement = document.createElement('div');
     buttonsContainer.classList.add('store-card__buttons-container');
 
-    const createButtonCardNode = ( text: string, callback: (e: Event) => void, id: number): HTMLButtonElement => {
+    const createButtonCardNode = (text: string, callback: (e: Event) => void, id: number): HTMLButtonElement => {
         const button: HTMLButtonElement = document.createElement('button');
         const newId: number | string = id;
         button.classList.add('store-card__button');
         button.classList.add(text);
-        button.setAttribute('data-id', newId.toString())
+        button.setAttribute('data-id', newId.toString());
         button.innerText = text;
         button.onclick = (e: MouseEvent) => {
             callback(e);
@@ -65,14 +65,14 @@ export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: 
         addButton.innerText = 'Remove';
         addButton.removeEventListener('click', add);
         addButton.addEventListener('click', removeEvt);
-    }
+    };
 
     const removeEvt = () => {
         basket.delete(obj);
         addButton.innerText = 'Add';
         addButton.removeEventListener('click', removeEvt);
         addButton.addEventListener('click', add);
-    }
+    };
 
-    addButton.addEventListener('click', add)
+    addButton.addEventListener('click', add);
 }
