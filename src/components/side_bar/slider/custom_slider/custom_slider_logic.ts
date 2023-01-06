@@ -18,8 +18,7 @@ export function getParsed(currentFrom: HTMLInputElement, currentTo: HTMLInputEle
   return [from, to];
 }
 
-export function setToggleAccessiblePrice(currentTarget: HTMLInputElement) {
-  // const toSlider = <HTMLInputElement>document.querySelector('#toSliderPrice');
+export function setToggleAccessible(currentTarget: HTMLInputElement) {
   if (Number(currentTarget.value) <= 0 ) {
     currentTarget.style.zIndex = '2';
   } else {
@@ -27,19 +26,11 @@ export function setToggleAccessiblePrice(currentTarget: HTMLInputElement) {
   }
 }
 
-export function setToggleAccessibleStock(currentTarget: HTMLInputElement) {
-  const toSlider = <HTMLInputElement>document.querySelector('#toSliderStock');
-  if (Number(currentTarget.value) <= 0 ) {
-    toSlider.style.zIndex = '2';
-  } else {
-    toSlider.style.zIndex = '0';
-  }
-}
 
-export function controlToSliderPrice(fromSlider: HTMLInputElement, toSlider: HTMLInputElement, toInput: HTMLInputElement) {
+export function controlToSlider(fromSlider: HTMLInputElement, toSlider: HTMLInputElement, toInput: HTMLInputElement) {
   const [from, to] = getParsed(fromSlider, toSlider);
   fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
-  setToggleAccessiblePrice(toSlider);
+  setToggleAccessible(toSlider);
   if (from! <= to!) {
     toSlider.value = to!.toString();
     toInput.value = to!.toString();
@@ -49,35 +40,10 @@ export function controlToSliderPrice(fromSlider: HTMLInputElement, toSlider: HTM
   }
 }
 
-export function controlToSliderStock(fromSlider: HTMLInputElement, toSlider: HTMLInputElement, toInput: HTMLInputElement) {
-  const [from, to] = getParsed(fromSlider, toSlider);
-  fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
-  setToggleAccessibleStock(toSlider);
-  if (from! <= to!) {
-    toSlider.value = to!.toString();
-    toInput.value = to!.toString();
-  } else {
-    toInput.value = from!.toString();
-    toSlider.value = from!.toString();
-  }
-}
-
-export function controlToInputPrice(toSlider: HTMLInputElement, fromInput: HTMLInputElement, toInput: HTMLInputElement, controlSlider: HTMLInputElement) {
+export function controlToInput(toSlider: HTMLInputElement, fromInput: HTMLInputElement, toInput: HTMLInputElement, controlSlider: HTMLInputElement) {
     const [from, to] = getParsed(fromInput, toInput);
     fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
-    setToggleAccessiblePrice(toInput);
-    if (from! <= to!) {
-        toSlider.value = to!.toString();
-        toInput.value = to!.toString();
-    } else {
-        toInput.value = from!.toString();
-    }
-}
-
-export function controlToInputStock(toSlider: HTMLInputElement, fromInput: HTMLInputElement, toInput: HTMLInputElement, controlSlider: HTMLInputElement) {
-    const [from, to] = getParsed(fromInput, toInput);
-    fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
-    setToggleAccessibleStock(toInput);
+    setToggleAccessible(toInput);
     if (from! <= to!) {
         toSlider.value = to!.toString();
         toInput.value = to!.toString();

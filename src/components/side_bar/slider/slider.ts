@@ -12,8 +12,6 @@ export const stock: Array<number> = new Array();
 export function renderSlider(targetNode: HTMLElement): void {
     sortDataByPrice(data);
     sortDataByStock(data);
-    console.log('price: ', price);
-    console.log('stock: ', stock);
     const maxPrice: number = getMaxOfArray(price);
     const minPrice: number = getMinOfArray(price);
     const maxStock: number = getMaxOfArray(stock);
