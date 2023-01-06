@@ -1,7 +1,7 @@
 import { renderFooter } from '../footer/footer';
 import { renderHeader } from '../header/header';
 import { renderMain } from '../main/main';
-import { Store } from '../store/store';
+import { Store } from '../global-store-component/store';
 import './app.scss';
 
 export function renderApp(targetNode: HTMLElement): void {

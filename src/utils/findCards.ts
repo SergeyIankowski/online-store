@@ -1,4 +1,4 @@
-import { store } from '../components/store/store';
+import { store } from '../components/global-store-component/store';
 import { searchDataItems } from './searchItems';
 
 export const findCards = (e: Event) => {
