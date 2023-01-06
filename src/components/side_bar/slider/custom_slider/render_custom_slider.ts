@@ -1,7 +1,6 @@
 import { controlFromInput, controlFromSlider, controlToInput, controlToSlider, fillSlider, setToggleAccessible } from "./custom_slider_logic";
 
 export function renderCustomSlider(maxPrice: number, minPrice: number, ID: string, targetNode: HTMLElement): void {
-    // const targetNode = <HTMLElement>document.querySelector('body');
 
     const rangeContainer: HTMLDivElement = document.createElement('div');
     rangeContainer.classList.add('range_container');
