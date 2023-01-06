@@ -7,7 +7,7 @@ export function renderProductsPresent(data: ProductData[], targetNode: HTMLEleme
     const productsPresent: HTMLElement = document.createElement('section');
     productsPresent.classList.add('products-present-board');
 
-    renderSortAndSearch(productsPresent);
+    renderSortAndSearch(data, productsPresent);
     renderProductsBoard(data, false, productsPresent);
 
     targetNode.append(productsPresent);

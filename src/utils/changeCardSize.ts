@@ -1,4 +1,4 @@
-import { store } from '../components/store/store';
+import { store } from '../components/global-store-component/store';
 
 export function changeCardSize(isSmall: boolean) {
     const cards = document.querySelectorAll('.store-card');

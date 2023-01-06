@@ -30,7 +30,7 @@ const selectOptions: CreateOptionNodeArguments[] = [
     { value: 'sort-title', className: 'sorting__item', attributes: [], text: 'Sort bu discount DESC' },
 ];
 
-export function renderSortAndSearch(targetNode: HTMLElement) {
+export function renderSortAndSearch(data: ProductData[], targetNode: HTMLElement) {
     const sortAndSearchContainer: HTMLElement = document.createElement('section');
     sortAndSearchContainer.classList.add('sort-and-search');
 
@@ -44,7 +44,7 @@ export function renderSortAndSearch(targetNode: HTMLElement) {
 
     const foundValue: HTMLSpanElement = document.createElement('span');
     foundValue.classList.add('found-board__value');
-    foundValue.innerText = '0';
+    foundValue.innerText = `${data.length}`;
 
     found.append(foundValue);
 

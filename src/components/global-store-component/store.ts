@@ -22,7 +22,8 @@ export class Store implements StoreInterface {
         while (this.boardNode.firstChild) {
             this.boardNode.removeChild(this.boardNode.firstChild);
         }
-
+        const foundBoard: HTMLElement = document.querySelector('.found-board__value')!;
+        foundBoard.innerText = `${cards.length}`;
         this.renderBoard();
     }
     public getInitialCardsFromStore() {

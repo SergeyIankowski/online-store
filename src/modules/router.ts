@@ -1,21 +1,5 @@
 import Router from '../../node_modules/vanilla-router/index';
 
-function getCurrentURL() {
-    const { host, hostname, href, origin, pathname, port, protocol, search } = window.location;
-    console.log('location', window.location.toString());
-    console.log('host', host);
-    console.log('hostname', hostname);
-    console.log('href', href);
-    console.log('origin', origin);
-    console.log('pathname', pathname);
-    console.log('port', port);
-    console.log('protocol', protocol);
-    console.log('search', search);
-    const url = new URL(window.location.toString());
-    console.log('URL', url);
-    console.log('URLSearchParams', [...url.searchParams.entries()]);
-    return pathname;
-}
 function setLocation() {
     const { pathname, search } = window.location;
     return pathname + search;
