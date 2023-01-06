@@ -1,5 +1,7 @@
-export function renderCustomSlider(maxPrice: number, minPrice: number, ID: string): void {
-    const main = <HTMLElement>document.querySelector('.main');
+import { controlFromInput, controlFromSlider, controlToInputPrice, controlToSliderPrice, fillSlider, setToggleAccessiblePrice } from "./custom_slider_logic";
+
+export function renderCustomSlider(maxPrice: number, minPrice: number, ID: string, targetNode: HTMLElement): void {
+    // const targetNode = <HTMLElement>document.querySelector('body');
 
     const rangeContainer: HTMLDivElement = document.createElement('div');
     rangeContainer.classList.add('range_container');
@@ -56,5 +58,13 @@ export function renderCustomSlider(maxPrice: number, minPrice: number, ID: strin
 
     formControl.append(formControlContainerMin, formControlContainerMax);
     rangeContainer.append(nameSlider, slidersControl, formControl);
-    main.append(rangeContainer);
+    targetNode.append(rangeContainer);
+
+    fillSlider(fromSliderPrice, toSliderPrice, '#C6C6C6', '#25daa5', toSliderPrice);
+    setToggleAccessiblePrice(toSliderPrice)
+
+    fromSliderPrice.oninput = () => controlFromSlider(fromSliderPrice, toSliderPrice, formControlContainerTimeInputMin);
+    toSliderPrice.oninput = () => controlToSliderPrice(fromSliderPrice, toSliderPrice, formControlContainerTimeInputMax);
+    formControlContainerTimeInputMin.oninput = () => controlFromInput(fromSliderPrice, formControlContainerTimeInputMin, formControlContainerTimeInputMax, toSliderPrice);
+    formControlContainerTimeInputMax.oninput = () => controlToInputPrice(toSliderPrice, formControlContainerTimeInputMin, formControlContainerTimeInputMax, toSliderPrice)
 }
