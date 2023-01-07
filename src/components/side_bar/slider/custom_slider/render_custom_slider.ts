@@ -13,16 +13,16 @@ export function renderCustomSlider(maxPrice: number, minPrice: number, ID: strin
     slidersControl.classList.add('sliders_control');
     const fromSliderPrice: HTMLInputElement = document.createElement('input');
     fromSliderPrice.setAttribute('id', `fromSlider${ID}`);
-    fromSliderPrice.setAttribute('type', 'range');
-    fromSliderPrice.setAttribute('value', `${minPrice}`);
+    fromSliderPrice.setAttribute('type', 'range');    
     fromSliderPrice.setAttribute('min', `${minPrice}`);
     fromSliderPrice.setAttribute('max', `${maxPrice}`);
+    fromSliderPrice.setAttribute('value', `${minPrice}`);
     const toSliderPrice: HTMLInputElement = document.createElement('input');
     toSliderPrice.setAttribute('id', `toSlider${ID}`);
-    toSliderPrice.setAttribute('type', 'range');
-    toSliderPrice.setAttribute('value', `${maxPrice}`);
+    toSliderPrice.setAttribute('type', 'range');    
     toSliderPrice.setAttribute('min', `${minPrice}`);
     toSliderPrice.setAttribute('max', `${maxPrice}`);
+    toSliderPrice.setAttribute('value', `${maxPrice}`);
     slidersControl.append(fromSliderPrice, toSliderPrice);
 
     const formControl: HTMLDivElement = document.createElement('div');
@@ -36,9 +36,9 @@ export function renderCustomSlider(maxPrice: number, minPrice: number, ID: strin
     formControlContainerTimeInputMin.classList.add('form_control_container__time__input');
     formControlContainerTimeInputMin.setAttribute('type', 'number');
     formControlContainerTimeInputMin.setAttribute('id', `fromInput${ID}`);
-    formControlContainerTimeInputMin.setAttribute('value', `${minPrice}`);
     formControlContainerTimeInputMin.setAttribute('min', `${minPrice}`);
     formControlContainerTimeInputMin.setAttribute('max', `${maxPrice}`);
+    formControlContainerTimeInputMin.setAttribute('value', `${minPrice}`);
     formControlContainerMin.append(formControlContainerTimeMin, formControlContainerTimeInputMin);
 
     const formControlContainerMax: HTMLDivElement = document.createElement('div');
@@ -50,9 +50,9 @@ export function renderCustomSlider(maxPrice: number, minPrice: number, ID: strin
     formControlContainerTimeInputMax.classList.add('form_control_container__time__input');
     formControlContainerTimeInputMax.setAttribute('type', 'number');
     formControlContainerTimeInputMax.setAttribute('id', `toInput${ID}`);
-    formControlContainerTimeInputMax.setAttribute('value', `${maxPrice}`);
     formControlContainerTimeInputMax.setAttribute('min', `${minPrice}`);
     formControlContainerTimeInputMax.setAttribute('max', `${maxPrice}`);
+    formControlContainerTimeInputMax.setAttribute('value', `${maxPrice}`);
     formControlContainerMax.append(formControlContainerTimeMax, formControlContainerTimeInputMax);
 
     formControl.append(formControlContainerMin, formControlContainerMax);
