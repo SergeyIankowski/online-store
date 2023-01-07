@@ -1,0 +1,33 @@
+@import '../../../sass/abstract/variables';
+.summary {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    border: $section-border-width solid $sections-border-color;
+    border-radius: 20px;
+    padding: 10px;
+}
+.summary__title {
+    font: normal bold 30px/120% 'Roboto', sans-serif;
+    color: $sections-border-color;
+}
+
+.summary__products-count {
+    font: normal bold 20px/120% 'Roboto', sans-serif;
+}
+.summary__total {
+    font: italic bold 20px/120% 'Roboto', sans-serif;
+}
+.summary__promo-caption {
+    font: italic normal 20px/120% 'Roboto', sans-serif;
+}
+.summary__button {
+    width: 200px;
+    height: 50px;
+    border: 0;
+    background-color: $sections-border-color;
+    border-radius: 15px;
+    font: italic bold 30px/120% 'Roboto', sans-serif;
+}
