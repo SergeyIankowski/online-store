@@ -15,7 +15,6 @@ type CreateOptionNodeArguments = {
     className: string;
     attributes: string[];
     text: string;
-    callback?: () => void;
 };
 
 const createOptionNode = (obj: CreateOptionNodeArguments) => {
@@ -24,53 +23,46 @@ const createOptionNode = (obj: CreateOptionNodeArguments) => {
     optionNode.value = obj.value;
     obj.attributes.forEach((attribute) => optionNode.setAttribute(attribute, 'true'));
     optionNode.innerText = obj.text;
-    optionNode.onclick = obj.callback ? obj.callback : null;
     return optionNode;
 };
 
 const selectOptions: CreateOptionNodeArguments[] = [
     { value: 'sort-title', className: 'sorting__item', attributes: ['disabled', 'selected'], text: 'Sort options:' },
     {
-        value: 'price-ASC',
+        value: 'sortByPriceASC',
         className: 'sorting__item',
         attributes: [],
         text: 'Sort by price ASC',
-        callback: sortByPriceASC,
     },
     {
-        value: 'price-DESC',
+        value: 'sortByPriceDESC',
         className: 'sorting__item',
         attributes: [],
         text: 'Sort by price DESC',
-        callback: sortByPriceDESC,
     },
     {
-        value: 'rating-ASC',
+        value: 'sortByRatingASC',
         className: 'sorting__item',
         attributes: [],
         text: 'Sort by rating ASC',
-        callback: sortByRatingASC,
     },
     {
-        value: 'rating-DESC',
+        value: 'sortByRatingDESC',
         className: 'sorting__item',
         attributes: [],
         text: 'Sort by rating DESC',
-        callback: sortByRatingDESC,
     },
     {
-        value: 'discount-ASC',
+        value: 'sortByDiscountASC',
         className: 'sorting__item',
         attributes: [],
         text: 'Sort by discount ASC',
-        callback: sortByDiscountASC,
     },
     {
-        value: 'discount-DESC',
+        value: 'sortByDiscountDESC',
         className: 'sorting__item',
         attributes: [],
         text: 'Sort bu discount DESC',
-        callback: sortByDiscountDESC,
     },
 ];
 
@@ -81,6 +73,29 @@ export function renderSortAndSearch(data: ProductData[], targetNode: HTMLElement
     const sorting: HTMLElement = document.createElement('select');
     sorting.classList.add('sort-and-search__sort-menu', 'sorting');
     selectOptions.forEach((item) => sorting.append(createOptionNode(item)));
+    sorting.addEventListener('click', (e: Event) => {
+        const elem = e.currentTarget as HTMLOptionElement;
+        switch (elem.value) {
+            case 'sortByPriceASC':
+                sortByPriceASC();
+                break;
+            case 'sortByPriceDESC':
+                sortByPriceDESC();
+                break;
+            case 'sortByRatingASC':
+                sortByRatingASC();
+                break;
+            case 'sortByRatingDESC':
+                sortByRatingDESC();
+                break;
+            case 'sortByDiscountASC':
+                sortByDiscountASC();
+                break;
+            case 'sortByDiscountDESC':
+                sortByDiscountDESC();
+                break;
+        }
+    });
 
     const found: HTMLParagraphElement = document.createElement('p');
     found.classList.add('sort-and-search__found', 'found-board');
