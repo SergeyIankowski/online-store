@@ -30,6 +30,10 @@ export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: 
     price.innerText = `${discountedPriceValue}$ / `;
     price.append(oldPrice);
 
+    const discount: HTMLElement = document.createElement('p');
+    discount.classList.add('store-card__price');
+    discount.innerText = `Discount: ${obj.discountPercentage}%`;
+
     const category: HTMLParagraphElement = document.createElement('p');
     category.classList.add('store-card__category');
     category.innerText = `${obj.category}`;
@@ -57,7 +61,7 @@ export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: 
     const detailsButton = createButtonCardNode('Details', () => {}, obj.id);
     buttonsContainer.append(addButton, detailsButton);
 
-    card.append(image, head, rating, price, category, brand, buttonsContainer);
+    card.append(image, head, rating, price, discount, category, brand, buttonsContainer);
     targetNode.append(card);
 
     const add = () => {
