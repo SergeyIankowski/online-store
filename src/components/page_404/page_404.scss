@@ -1,0 +1,16 @@
+.main {
+    .container {
+        display: grid;
+        gap: 5px;
+        max-width: 1366px;
+        height: 800px;
+        margin: 0 auto;
+        .content{
+            display: grid;
+            place-self: center;
+            .text{
+                font: normal bold 30px/120% 'Roboto', sans-serif;
+            }
+        }
+    }
+}
