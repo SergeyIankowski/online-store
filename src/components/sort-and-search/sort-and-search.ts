@@ -1,13 +1,21 @@
 import { ProductData } from '../../interfaces/productData';
 import { changeCardSize } from '../../utils/changeCardSize';
 import { findCards } from '../../utils/findCards';
+import {
+    sortByPriceASC,
+    sortByPriceDESC,
+    sortByRatingASC,
+    sortByRatingDESC,
+    sortByDiscountASC,
+    sortByDiscountDESC,
+} from '../../utils/sort-items-by-condition';
 import './sort-and-search.scss';
 type CreateOptionNodeArguments = {
     value: string;
     className: string;
     attributes: string[];
     text: string;
-    callback?: (e: Event) => ProductData[];
+    callback?: () => void;
 };
 
 const createOptionNode = (obj: CreateOptionNodeArguments) => {
@@ -22,12 +30,48 @@ const createOptionNode = (obj: CreateOptionNodeArguments) => {
 
 const selectOptions: CreateOptionNodeArguments[] = [
     { value: 'sort-title', className: 'sorting__item', attributes: ['disabled', 'selected'], text: 'Sort options:' },
-    { value: 'price-ASC', className: 'sorting__item', attributes: [], text: 'Sort by price ASC' },
-    { value: 'sort-title', className: 'sorting__item', attributes: [], text: 'Sort by price DESC' },
-    { value: 'sort-title', className: 'sorting__item', attributes: [], text: 'Sort by rating ASC' },
-    { value: 'sort-title', className: 'sorting__item', attributes: [], text: 'Sort by rating DESC' },
-    { value: 'sort-title', className: 'sorting__item', attributes: [], text: 'Sort by discount ASC' },
-    { value: 'sort-title', className: 'sorting__item', attributes: [], text: 'Sort bu discount DESC' },
+    {
+        value: 'price-ASC',
+        className: 'sorting__item',
+        attributes: [],
+        text: 'Sort by price ASC',
+        callback: sortByPriceASC,
+    },
+    {
+        value: 'price-DESC',
+        className: 'sorting__item',
+        attributes: [],
+        text: 'Sort by price DESC',
+        callback: sortByPriceDESC,
+    },
+    {
+        value: 'rating-ASC',
+        className: 'sorting__item',
+        attributes: [],
+        text: 'Sort by rating ASC',
+        callback: sortByRatingASC,
+    },
+    {
+        value: 'rating-DESC',
+        className: 'sorting__item',
+        attributes: [],
+        text: 'Sort by rating DESC',
+        callback: sortByRatingDESC,
+    },
+    {
+        value: 'discount-ASC',
+        className: 'sorting__item',
+        attributes: [],
+        text: 'Sort by discount ASC',
+        callback: sortByDiscountASC,
+    },
+    {
+        value: 'discount-DESC',
+        className: 'sorting__item',
+        attributes: [],
+        text: 'Sort bu discount DESC',
+        callback: sortByDiscountDESC,
+    },
 ];
 
 export function renderSortAndSearch(data: ProductData[], targetNode: HTMLElement) {
