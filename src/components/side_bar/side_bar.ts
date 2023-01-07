@@ -1,3 +1,4 @@
+import { copyBtnControl, resetBtnControl } from './btns_logic';
 import './side_bar.scss';
 import { renderSlider } from './slider/slider';
 
@@ -57,4 +58,7 @@ export function renderSideBar(targetNode: HTMLElement): void {
     container.append(bntsContainer, categoryContainer, brandContainer);
     targetNode.append(container);
     renderSlider(container);
+
+    btnReset.onclick = () => resetBtnControl();
+    btnCopyLink.onclick = () => copyBtnControl();
 }
