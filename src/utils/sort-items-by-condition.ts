@@ -6,6 +6,7 @@ export function sortByPriceASC(): void {
     const sortedData = getSortItems(initialData, 'price');
     store.setCardsToStoreAndRender(sortedData);
 }
+
 export function sortByPriceDESC(): void {
     const initialData = store.getSortedCardsFromStore();
     const sortedData = getSortItemsReverse(initialData, 'price');
