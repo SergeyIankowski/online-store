@@ -1,0 +1,69 @@
+@import '../../../sass/abstract/variables';
+.basket-card {
+    display: grid;
+    grid-template-columns: 50px 160px repeat(2, 1fr);
+    align-items: center;
+    justify-items: start;
+    gap: 5px;
+    width: 100%;
+
+    border: $section-border-width solid $sections-border-color;
+    border-radius: 20px;
+    padding: 10px;
+}
+.basket-card__number {
+    font: normal bold 25px/120% 'Roboto', sans-serif;
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.basket-card__image {
+    width: 150px;
+}
+.basket-card__info {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 5px;
+}
+.backet-card__title {
+    font: normal bold 20px/120% 'Roboto', sans-serif;
+}
+.basket-card__description {
+    font: normal bold 15px/120% 'Roboto', sans-serif;
+}
+.basket-card__price {
+    font: normal italic 20px/120% 'Roboto', sans-serif;
+    color: $sections-border-color;
+}
+.basket-card__rating,
+.basket-card__stock {
+    font: normal italic 15px/120% 'Roboto', sans-serif;
+}
+.backet-card__count-container {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+.basket-card__count-input {
+    border: 0;
+    width: 50px;
+    font: normal bold 25px/120% 'Roboto', sans-serif;
+}
+.basket-card__count-button {
+    background-color: transparent;
+    border: $section-border-width solid $sections-border-color;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font: normal bold 25px/120% 'Roboto', sans-serif;
+    &:hover {
+        background-color: $sections-border-color;
+    }
+}

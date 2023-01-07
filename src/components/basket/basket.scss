@@ -1,0 +1,17 @@
+@import '../../sass/abstract/variables';
+.basket{
+    .wrapper {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        gap: 10px;
+    }
+}
+.cards-container {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+
+    border: $section-border-width solid $sections-border-color;
+    border-radius: 20px;
+    padding: 10px;
+}
