@@ -202,10 +202,5 @@ export function renderBasketPopup(targetNode: HTMLElement) {
         );
     });
 
-    // formNodeButton.addEventListener('click', (e: Event) => {
-    //   const targ = e.target as HTMLButtonElement;
-
-    // })
-
     targetNode.append(basketPopup);
 }
