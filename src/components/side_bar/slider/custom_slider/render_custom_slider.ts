@@ -19,13 +19,13 @@ export function renderCustomSlider(maxPrice: number, minPrice: number, ID: strin
     slidersControl.classList.add('sliders_control');
     const fromSliderPrice: HTMLInputElement = document.createElement('input');
     fromSliderPrice.setAttribute('id', `fromSlider${ID}`);
-    fromSliderPrice.setAttribute('type', 'range');    
+    fromSliderPrice.setAttribute('type', 'range');
     fromSliderPrice.setAttribute('min', `${minPrice}`);
     fromSliderPrice.setAttribute('max', `${maxPrice}`);
     fromSliderPrice.setAttribute('value', `${minPrice}`);
     const toSliderPrice: HTMLInputElement = document.createElement('input');
     toSliderPrice.setAttribute('id', `toSlider${ID}`);
-    toSliderPrice.setAttribute('type', 'range');    
+    toSliderPrice.setAttribute('type', 'range');
     toSliderPrice.setAttribute('min', `${minPrice}`);
     toSliderPrice.setAttribute('max', `${maxPrice}`);
     toSliderPrice.setAttribute('value', `${maxPrice}`);

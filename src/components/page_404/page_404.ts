@@ -1,7 +1,7 @@
-import { clearPage } from '../../utils/clear_page'
-import './page_404.scss'
+import { clearPage } from '../../utils/clear_page';
+import './page_404.scss';
 
-export function renderPage404 (targetNode: HTMLElement | DocumentFragment): void {
+export function renderPage404(targetNode: HTMLElement | DocumentFragment): void {
     clearPage(targetNode);
 
     const container: HTMLDivElement = document.createElement('div');
@@ -12,7 +12,7 @@ export function renderPage404 (targetNode: HTMLElement | DocumentFragment): void
 
     const h1: HTMLElement = document.createElement('h1');
     h1.classList.add('text');
-    h1.textContent = '404 PAGE NOT FOUND'
+    h1.textContent = '404 PAGE NOT FOUND';
 
     content.append(h1);
     container.append(content);
