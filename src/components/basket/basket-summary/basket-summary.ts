@@ -36,6 +36,13 @@ export function renderSummary(count: number, totalPrice: number, targetNode: HTM
     summaryButton.classList.add('summary__button');
     summaryButton.innerText = 'BUY NOW';
 
-    summary.append(summaryHead, summaryProductsCount, summaryTotal, summaryPromoInput, summaryPromoCaption, summaryButton);
+    summary.append(
+        summaryHead,
+        summaryProductsCount,
+        summaryTotal,
+        summaryPromoInput,
+        summaryPromoCaption,
+        summaryButton
+    );
     targetNode.append(summary);
 }
