@@ -103,11 +103,11 @@ export function renderBasketPopup(targetNode: HTMLElement) {
     basketPopup.append(overlay);
 
     overlay.addEventListener('click', (e: Event) => {
-      e.stopPropagation()
-      const targ = e.target as HTMLElement;
-      if(targ.classList.contains('overlay')) {
-        basketPopup.remove()
-      }
+        e.stopPropagation();
+        const targ = e.target as HTMLElement;
+        if (targ.classList.contains('overlay')) {
+            basketPopup.remove();
+        }
     });
 
     nameInput.addEventListener('input', (e: Event) => {
