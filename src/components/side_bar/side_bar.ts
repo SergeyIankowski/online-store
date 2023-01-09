@@ -45,12 +45,10 @@ export function renderSideBar(targetNode: HTMLElement): void {
             if(trgt.checked === true){
                 const foundData = searchDataItems(initialData, trgt.id);
                 foundData.forEach((el: ProductData) => filteredList.push(el))
-                console.log(filteredList)
                 store.setCardsToStoreAndRender(filteredList);
             } else {
                 for(let i = filteredList.length - 1; i >= 0; i--) {
                     filteredList[i]!.category === trgt.id ? filteredList.splice(i, 1) : false
-                    console.log(filteredList)
                 };
                 store.setCardsToStoreAndRender(filteredList);
                 if(filteredList.length === 0) {
@@ -87,12 +85,10 @@ export function renderSideBar(targetNode: HTMLElement): void {
             if(trgt.checked === true){
                 const foundData = searchDataItems(initialData, trgt.id);
                 foundData.forEach((el: ProductData) => filteredList.push(el))
-                console.log(filteredList)
                 store.setCardsToStoreAndRender(filteredList);
             } else {
                 for(let i = filteredList.length - 1; i >= 0; i--) {
                     filteredList[i]!.brand === trgt.id ? filteredList.splice(i, 1) : false
-                    console.log(filteredList)
                 };
                 store.setCardsToStoreAndRender(filteredList);
                 if(filteredList.length === 0) {

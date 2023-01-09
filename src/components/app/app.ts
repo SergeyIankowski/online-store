@@ -4,12 +4,9 @@ import { renderMain } from '../main/main';
 import { Store } from '../global-store-component/store';
 import './app.scss';
 import { BasketData } from '../../interfaces/basket_data';
-// import { getSortItemsByCategory } from '../../utils/get_sort_items';
-// import { basket } from '../store-card/storeCard';
 
 
 export let basket: BasketData[] = new Array();
-export let idList: number[] = new Array();
 
 export function renderApp(targetNode: HTMLElement): void {
     const app: HTMLDivElement = document.createElement('div');
@@ -25,8 +22,6 @@ export function renderApp(targetNode: HTMLElement): void {
     if (localStorage.getItem('basket') === null) {
             localStorage.setItem('basket', JSON.stringify(basket))
         }
-    basket = JSON.parse(localStorage.getItem('basket')!)
-    basket.forEach((el: BasketData) => idList.push(el.id));
-    console.log(idList)
-    // getSortItemsByCategory(store.getSortedCardsFromStore(),'smartphones');
+    basket = JSON.parse(localStorage.getItem('basket')!);
+    
 }
