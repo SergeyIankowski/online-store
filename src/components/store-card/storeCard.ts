@@ -1,7 +1,7 @@
 import { ProductData } from '../../interfaces/productData';
 import './store-card.scss';
-
-export const basket = new Map();
+import { basket } from '../app/app';
+import { BasketData } from '../../interfaces/basket_data';
 
 export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: HTMLElement): void {
     const card: HTMLElement = document.createElement('div');
@@ -65,18 +65,50 @@ export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: 
     targetNode.append(card);
 
     const add = () => {
-        basket.set(obj, 1);
-        addButton.innerText = 'Remove';
-        addButton.removeEventListener('click', add);
-        addButton.addEventListener('click', removeEvt);
+        if (localStorage.getItem('basket') === null) {
+            localStorage.setItem('basket', JSON.stringify(basket));
+        } else {
+            const basketStr = <string> localStorage.getItem('basket');
+            const arrA = <BasketData[]> JSON.parse(basketStr);
+            if (!basketStr.includes(`"id":${obj.id}`)){
+                const counter: {count: number} = {count: 1};
+                arrA.push(Object.assign(obj, counter));
+                localStorage.setItem('basket', JSON.stringify(arrA));
+                addButton.innerText = 'Remove';
+                addButton.removeEventListener('click', add);
+                addButton.addEventListener('click', removeEvt);
+                console.log('1')
+            }
+        }
     };
 
     const removeEvt = () => {
-        basket.delete(obj);
+        const arrB = [...JSON.parse(localStorage.getItem('basket')!)]
+        arrB.forEach((el: BasketData, i: number) => {
+            el.id === obj.id ? arrB.splice(i, 1) : false
+        });
+        localStorage.setItem('basket', JSON.stringify(arrB));
         addButton.innerText = 'Add';
         addButton.removeEventListener('click', removeEvt);
         addButton.addEventListener('click', add);
     };
 
-    addButton.addEventListener('click', add);
+    function control () {
+         if (localStorage.getItem('basket') === null) {
+            localStorage.setItem('basket', JSON.stringify(basket));
+        } else {
+            const basketStr = <string> localStorage.getItem('basket');
+            const arrA = <BasketData[]> JSON.parse(basketStr);
+            if (basketStr.includes(`"id":${obj.id}`)){
+                localStorage.setItem('basket', JSON.stringify(arrA));
+                addButton.innerText = 'Remove';
+                addButton.removeEventListener('click', add);
+                addButton.addEventListener('click', removeEvt);
+                console.log('1')
+            }
+    }
+}
+
+    addButton.addEventListener('click', add)
+    control()
 }

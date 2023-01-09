@@ -1,10 +1,10 @@
-// import { renderApp } from './components/app/app';
+import { renderApp } from './components/app/app';
 import './modules/router';
 import './sass/main.scss';
 import { data } from './mock_data';
 import { renderBasketPage } from './components/basket/basket';
 
-// renderApp(document.body);
+renderApp(document.body);
 
 const map = new Map();
 
