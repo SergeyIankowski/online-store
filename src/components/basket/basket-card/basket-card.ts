@@ -68,4 +68,36 @@ export function renderBasketCard(obj: BasketData, targetNode: HTMLElement): void
     basketCard.append(basketCardNumber, basketCardImage, basketCardInfo, basketCardCountContainer);
 
     targetNode.append(basketCard);
+
+    moreButton.addEventListener('click', () => {
+        const arrA = <BasketData[]>JSON.parse(localStorage.getItem('basket')!);
+            arrA.forEach((el: BasketData) => {
+                if (el.id === obj.id) {
+                    el.count++
+                    localStorage.setItem('basket', JSON.stringify(arrA))
+                    countInput.value = el.count.toString()
+                    // TODO тут нужно будет вызвать перерендер страницы
+                }
+            })
+    })
+
+    lessButton.addEventListener('click', () => {
+        const arrB = <BasketData[]>JSON.parse(localStorage.getItem('basket')!);
+        arrB.forEach((el: BasketData, i: number) => {
+            if (el.id === obj.id) {
+                if(el.count === 1) {
+                    arrB.splice(i, 1)
+                    localStorage.setItem('basket', JSON.stringify(arrB))
+                    // TODO тут нужно будет вызвать перерендер страницы
+                } else {
+                    el.count--
+                    localStorage.setItem('basket', JSON.stringify(arrB))
+                    countInput.value = el.count.toString()
+                    // TODO тут нужно будет вызвать перерендер страницы
+                }
+            }
+        })
+    })
+
+
 }
