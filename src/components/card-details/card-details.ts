@@ -1,6 +1,6 @@
 import { ProductData } from '../../interfaces/productData';
-import { data } from '../../mock_data';
 import { renderBasketPopup } from '../basket-popup/basket-popup';
+import { store } from '../global-store-component/store';
 import { renderMainContent } from '../main/main';
 import './card-details.scss';
 
@@ -124,7 +124,7 @@ export function renderCardDetails(targetNode: HTMLElement, obj: ProductData) {
     breadcrumbs.querySelector('.breadcrumbs__item__store')!.addEventListener('click', () => {
         cardDetails.remove();
         const main = document.querySelector('.main') as HTMLElement;
-        renderMainContent(main, data);
+        renderMainContent(main, {products:store.sortedCards});
     });
 
     targetNode.append(cardDetails);
