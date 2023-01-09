@@ -202,7 +202,7 @@ export function renderBasketPopup(targetNode: HTMLElement) {
             cvvInput
         );
     });
-    
+
     targetNode.append(basketPopup);
     document.body.classList.add('body_unscrolled');
 }
