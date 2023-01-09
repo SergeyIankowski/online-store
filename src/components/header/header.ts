@@ -1,5 +1,8 @@
 import Bag from '../../assets/img/bag-icon.svg';
 import Cart from '../../assets/img/cart-icon.svg';
+import { clearPage } from '../../utils/clear_page';
+import { store } from '../global-store-component/store';
+import { renderMainContent } from '../main/main';
 import './header.scss';
 
 export function renderHeader(targetNode: HTMLElement | DocumentFragment): void {
@@ -47,5 +50,10 @@ export function renderHeader(targetNode: HTMLElement | DocumentFragment): void {
     wrapper.append(logoContainer, cartTotal, cartButtonContainer);
     header.append(wrapper);
 
+    logoContainer.addEventListener('click', () => {
+        const main = document.querySelector('.main') as HTMLElement;
+        clearPage(main);
+        renderMainContent(main, {products: store.getSortedCardsFromStore()});
+    })
     targetNode.append(header);
 }

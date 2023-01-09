@@ -3,7 +3,7 @@ import { renderBasketCard } from './basket-card/basket-card';
 import { renderSummary } from './basket-summary/basket-summary';
 import './basket.scss';
 
-export function renderBasketPage(data: Map<ProductData, number>, targetNode: HTMLElement) {
+export function renderBasketPage(targetNode: HTMLElement, data: Map<ProductData, number>) {
     const basket: HTMLElement = document.createElement('section');
     basket.classList.add('basket');
 

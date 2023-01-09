@@ -1,4 +1,7 @@
 import { ProductData } from '../../interfaces/productData';
+import { data } from '../../mock_data';
+import { renderBasketPopup } from '../basket-popup/basket-popup';
+import { renderMainContent } from '../main/main';
 import './card-details.scss';
 
 const createBreadCrumpSpan = (key: string, value: string) => {
@@ -7,11 +10,12 @@ const createBreadCrumpSpan = (key: string, value: string) => {
     span.innerText = value === 'store' ? 'Online Store' : value;
     return span;
 };
-const renderImageNode = (path: string, title: string, className: string) => {
+const renderImageNode = (path: string, title: string, className: string, callback?: (e: Event) => void) => {
     const imgNode: HTMLImageElement = document.createElement('img');
     imgNode.classList.add(className);
     imgNode.src = path;
     imgNode.alt = `photo ${title}`;
+    callback ? (imgNode.onclick = callback) : '';
     return imgNode;
 };
 const capitalizeString = (str: string) => {
@@ -28,7 +32,7 @@ const renderPresentInfoItem = (key: string, value: string) => {
     return node;
 };
 
-export function renderCardDetails(obj: ProductData, targetNode: HTMLElement) {
+export function renderCardDetails(targetNode: HTMLElement, obj: ProductData) {
     const cardDetails: HTMLElement = document.createElement('section');
     cardDetails.classList.add('card-details');
 
@@ -61,11 +65,20 @@ export function renderCardDetails(obj: ProductData, targetNode: HTMLElement) {
 
     const photosContainer: HTMLDivElement = document.createElement('div');
     photosContainer.classList.add('info-container__item', 'photos-container');
-    obj.images.forEach((img) => photosContainer.append(renderImageNode(img, obj.title, 'photo-container__image')));
 
     const presentPhotoContainer: HTMLDivElement = document.createElement('div');
     presentPhotoContainer.classList.add('info-container__item', 'present-photo-container');
-    presentPhotoContainer.append(renderImageNode(obj.thumbnail, obj.title, 'present-photo'));
+    const presentPhoto = renderImageNode(obj.thumbnail, obj.title, 'present-photo');
+    presentPhotoContainer.append(presentPhoto);
+
+    obj.images.forEach((img) =>
+        photosContainer.append(
+            renderImageNode(img, obj.title, 'photo-container__image', (e: Event) => {
+                const targ = e.target as HTMLImageElement;
+                presentPhoto.src = targ.src;
+            })
+        )
+    );
 
     const presentInfo: HTMLDivElement = document.createElement('div');
     presentInfo.classList.add('info-container__item', 'present-info');
@@ -96,7 +109,7 @@ export function renderCardDetails(obj: ProductData, targetNode: HTMLElement) {
 
     const buttonAdd: HTMLButtonElement = document.createElement('button');
     buttonAdd.classList.add('price-container__button', 'price-container__button-add');
-    buttonAdd.innerText = 'Add To Card';
+    buttonAdd.innerText = 'Add To Cart';
 
     const buttonBuy: HTMLButtonElement = document.createElement('button');
     buttonBuy.classList.add('price-container__button', 'price-container__button-buy');
@@ -106,5 +119,13 @@ export function renderCardDetails(obj: ProductData, targetNode: HTMLElement) {
     infoContainer.append(photosContainer, presentPhotoContainer, presentInfo, priceContainer);
     wrapper.append(breadcrumbs, infoContainerTitle, infoContainer);
     cardDetails.append(wrapper);
+
+    buttonBuy.addEventListener('click', () => renderBasketPopup(document.body));
+    breadcrumbs.querySelector('.breadcrumbs__item__store')!.addEventListener('click', () => {
+        cardDetails.remove();
+        const main = document.querySelector('.main') as HTMLElement;
+        renderMainContent(main, data);
+    });
+
     targetNode.append(cardDetails);
 }

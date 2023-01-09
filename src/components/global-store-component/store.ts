@@ -18,6 +18,7 @@ export class Store implements StoreInterface {
     }
     public setCardsToStoreAndRender(cards: ProductData[]): void {
         this.sortedCards = cards;
+        this.boardNode = document.querySelector('.products-board')!;
 
         while (this.boardNode.firstChild) {
             this.boardNode.removeChild(this.boardNode.firstChild);
