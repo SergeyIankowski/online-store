@@ -10,8 +10,8 @@ export const price: Array<number> = new Array();
 export const stock: Array<number> = new Array();
 
 export function renderSlider(targetNode: HTMLElement): void {
-    sortDataByPrice({products:store.initialCards});
-    sortDataByStock({products:store.initialCards});
+    sortDataByPrice({ products: store.initialCards });
+    sortDataByStock({ products: store.initialCards });
     const maxPrice: number = getMaxOfArray(price);
     const minPrice: number = getMinOfArray(price);
     const maxStock: number = getMaxOfArray(stock);

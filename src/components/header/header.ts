@@ -1,6 +1,9 @@
 import Bag from '../../assets/img/bag-icon.svg';
 import Cart from '../../assets/img/cart-icon.svg';
+import { BasketData } from '../../interfaces/basket_data';
 import { clearPage } from '../../utils/clear_page';
+import { setCountItemsToCartButtonValue, setSummaryPriceToHeader } from '../../utils/setHeaderValuesFromLocalStorage';
+import { renderBasketPage } from '../basket/basket';
 import { store } from '../global-store-component/store';
 import { renderMainContent } from '../main/main';
 import './header.scss';
@@ -30,7 +33,7 @@ export function renderHeader(targetNode: HTMLElement | DocumentFragment): void {
 
     const cartTotalValue: HTMLElement = document.createElement('span');
     cartTotalValue.classList.add('cart-total__value');
-    cartTotalValue.innerText = `${0}`;
+    setSummaryPriceToHeader(cartTotalValue);
 
     const cartButtonContainer: HTMLElement = document.createElement('div');
     cartButtonContainer.classList.add('cart-button');
@@ -42,7 +45,7 @@ export function renderHeader(targetNode: HTMLElement | DocumentFragment): void {
 
     const cartButtonValue: HTMLElement = document.createElement('div');
     cartButtonValue.classList.add('cart-button__value');
-    cartButtonValue.innerText = `${17}`;
+    setCountItemsToCartButtonValue(cartButtonValue);
 
     logoContainer.append(logoImage, logoDescription);
     cartTotal.append(cartTotalValue);
@@ -53,7 +56,17 @@ export function renderHeader(targetNode: HTMLElement | DocumentFragment): void {
     logoContainer.addEventListener('click', () => {
         const main = document.querySelector('.main') as HTMLElement;
         clearPage(main);
-        renderMainContent(main, {products: store.getSortedCardsFromStore()});
-    })
+        renderMainContent(main, { products: store.getSortedCardsFromStore() });
+    });
+    cartButtonContainer.addEventListener('click', () => {
+        const main = document.querySelector('.main') as HTMLElement;
+        clearPage(main);
+        if (localStorage.getItem('basket') !== null) {
+            const arrB: BasketData[] = [...JSON.parse(localStorage.getItem('basket')!)];
+            renderBasketPage(main, arrB);
+        } else {
+            renderBasketPage(main, []);
+        }
+    });
     targetNode.append(header);
 }
