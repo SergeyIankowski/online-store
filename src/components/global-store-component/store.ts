@@ -12,7 +12,7 @@ export class Store extends Loader implements StoreInterface {
     sortedCards: ProductData[];
     boardNode: HTMLElement;
     cardSize: boolean;
-    constructor(boardNode: HTMLElement, baseLink:string) {
+    constructor(boardNode: HTMLElement, baseLink: string) {
         super(baseLink);
         this.initialCards = [];
         this.sortedCards = [];
@@ -21,8 +21,8 @@ export class Store extends Loader implements StoreInterface {
         super.getRespDataFromURL('GET', '', (data: IncomeData) => {
             this.initialCards = data.products;
             this.sortedCards = data.products;
-            renderMainContent(document.querySelector('.main')!, {products:this.initialCards})
-        })
+            renderMainContent(document.querySelector('.main')!, { products: this.initialCards });
+        });
     }
     public setCardsToStoreAndRender(cards: ProductData[]): void {
         this.sortedCards = cards;

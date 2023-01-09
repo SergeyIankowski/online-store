@@ -108,6 +108,7 @@ export function renderBasketPopup(targetNode: HTMLElement) {
         if (targ.classList.contains('overlay')) {
             basketPopup.remove();
         }
+        document.body.classList.remove('body_unscrolled');
     });
 
     nameInput.addEventListener('input', (e: Event) => {
@@ -201,6 +202,7 @@ export function renderBasketPopup(targetNode: HTMLElement) {
             cvvInput
         );
     });
-
+    
     targetNode.append(basketPopup);
+    document.body.classList.add('body_unscrolled');
 }

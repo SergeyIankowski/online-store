@@ -1,3 +1,4 @@
+import { renderBasketPopup } from '../../basket-popup/basket-popup';
 import './basket-summary.scss';
 
 export function renderSummary(count: number, totalPrice: number, targetNode: HTMLElement): void {
@@ -44,5 +45,6 @@ export function renderSummary(count: number, totalPrice: number, targetNode: HTM
         summaryPromoCaption,
         summaryButton
     );
+    summaryButton.addEventListener('click', () => renderBasketPopup(document.body));
     targetNode.append(summary);
 }

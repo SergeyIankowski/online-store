@@ -1,7 +1,7 @@
-import { ProductData } from '../../../interfaces/productData';
+import { BasketData } from '../../../interfaces/basket_data';
 import './basket-card.scss';
 
-export function renderBasketCard(obj: ProductData, count: number, targetNode: HTMLElement): void {
+export function renderBasketCard(obj: BasketData, targetNode: HTMLElement): void {
     const basketCard: HTMLDivElement = document.createElement('div');
     basketCard.classList.add('basket__card-item', 'basket-card');
 
@@ -57,7 +57,7 @@ export function renderBasketCard(obj: ProductData, count: number, targetNode: HT
     const countInput: HTMLInputElement = document.createElement('input');
     countInput.type = 'text';
     countInput.classList.add('basket-card__count-input');
-    countInput.value = `${count}`;
+    countInput.value = `${obj.count}`;
 
     const moreButton: HTMLButtonElement = document.createElement('button');
     moreButton.innerText = '+';
