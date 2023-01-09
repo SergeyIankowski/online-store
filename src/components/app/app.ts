@@ -13,11 +13,11 @@ export let idList: number[] = new Array();
 export function renderApp(targetNode: HTMLElement): void {
     const app: HTMLDivElement = document.createElement('div');
     app.classList.add('app');
-
+    
     renderHeader(app);
     renderMain(app);
     renderFooter(app);
-
+    
     Store.init(app.querySelector('.products-board')!);
 
     targetNode.append(app);

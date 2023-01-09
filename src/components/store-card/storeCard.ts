@@ -1,4 +1,6 @@
 import { ProductData } from '../../interfaces/productData';
+import { clearPage } from '../../utils/clear_page';
+import { renderCardDetails } from '../card-details/card-details';
 import './store-card.scss';
 import { basket } from '../app/app';
 import { BasketData } from '../../interfaces/basket_data';
@@ -111,4 +113,9 @@ export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: 
 
     addButton.addEventListener('click', add)
     control()
+    detailsButton.addEventListener('click', () => {
+        const main = document.querySelector('.main') as HTMLElement;
+        clearPage(main);
+        renderCardDetails(main, obj);
+    })
 }

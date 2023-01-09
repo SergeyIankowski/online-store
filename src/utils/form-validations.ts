@@ -1,4 +1,4 @@
-import { changeInputColorAfterValidation } from "./changeInputColorAfterValidation";
+import { changeInputColorAfterValidation } from './changeInputColorAfterValidation';
 
 export function nameValidate(e: Event) {
     const targ = e.target as HTMLInputElement;

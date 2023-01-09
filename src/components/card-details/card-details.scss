@@ -1,0 +1,94 @@
+@import '../../sass/abstract/variables';
+.card-details {
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+    }
+}
+.breadcrumbs {
+    font: normal italic 20px/120% 'Roboto', sans-serif;
+    display: flex;
+    gap: 15px;
+}
+.breadcrumbs__item {
+    color: green;
+}
+.breadcrumbs__item__store {
+    cursor: pointer;
+}
+.card-details__title {
+    font: normal bold 30px/120% 'Roboto', sans-serif;
+}
+.card-details__container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+    border: $section-border-width solid $sections-border-color;
+    border-radius: 20px;
+}
+.photos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 10px;
+    border: $section-border-width solid $sections-border-color;
+    border-radius: 20px;
+}
+.photo-container__image {
+    border: 1px solid $sections-border-color;
+    width: 100px;
+}
+.present-photo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.present-photo {
+    width: 400px;
+}
+.present-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    max-width: 300px;
+}
+.present-info__item {
+    font: normal bold 20px/120% 'Roboto', sans-serif;
+}
+.present-info__item-value {
+    font: italic normal 20px/120% 'Roboto', sans-serif;
+}
+.price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 20px;
+}
+.price-container__price {
+    font: italic bold 25px/120% 'Roboto', sans-serif;
+}
+.price-container__price_old {
+    color: gray;
+    text-decoration: line-through;
+    text-align: center;
+}
+.price-container__button {
+    width: 200px;
+    height: 50px;
+    font: italic bold 20px/120% 'Roboto', sans-serif;
+    background-color: $sections-border-color;
+    border: 0;
+    border-radius: 15px;
+    & :active {
+        background-color: green;
+    }
+}
