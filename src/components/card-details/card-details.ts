@@ -1,5 +1,10 @@
+import { BasketData } from '../../interfaces/basket_data';
 import { ProductData } from '../../interfaces/productData';
+import { clearPage } from '../../utils/clear_page';
+import { setCountItemsToCartButtonValue, setSummaryPriceToHeader } from '../../utils/setHeaderValuesFromLocalStorage';
+import { basket } from '../app/app';
 import { renderBasketPopup } from '../basket-popup/basket-popup';
+import { renderBasketPage } from '../basket/basket';
 import { store } from '../global-store-component/store';
 import { renderMainContent } from '../main/main';
 import './card-details.scss';
@@ -107,24 +112,89 @@ export function renderCardDetails(targetNode: HTMLElement, obj: ProductData) {
 
     priceContainerTitle.append(spanPriceNew, ' / ', spanPriceOld);
 
-    const buttonAdd: HTMLButtonElement = document.createElement('button');
-    buttonAdd.classList.add('price-container__button', 'price-container__button-add');
-    buttonAdd.innerText = 'Add To Cart';
+    const addButton: HTMLButtonElement = document.createElement('button');
+    addButton.classList.add('price-container__button', 'price-container__button-add');
+    addButton.innerText = 'Add To Cart';
 
-    const buttonBuy: HTMLButtonElement = document.createElement('button');
-    buttonBuy.classList.add('price-container__button', 'price-container__button-buy');
-    buttonBuy.innerText = 'Buy';
+    const buyButton: HTMLButtonElement = document.createElement('button');
+    buyButton.classList.add('price-container__button', 'price-container__button-buy');
+    buyButton.innerText = 'Buy';
 
-    priceContainer.append(priceContainerTitle, buttonAdd, buttonBuy);
+    priceContainer.append(priceContainerTitle, addButton, buyButton);
     infoContainer.append(photosContainer, presentPhotoContainer, presentInfo, priceContainer);
     wrapper.append(breadcrumbs, infoContainerTitle, infoContainer);
     cardDetails.append(wrapper);
 
-    buttonBuy.addEventListener('click', () => renderBasketPopup(document.body));
+    buyButton.addEventListener('click', () => {
+        const main = document.querySelector('.main') as HTMLElement;
+        clearPage(main);
+        if (localStorage.getItem('basket') !== null) {
+            const arrB: BasketData[] = [...JSON.parse(localStorage.getItem('basket')!)];
+            renderBasketPage(main, arrB);
+        } else {
+            renderBasketPage(main, []);
+        }
+        renderBasketPopup(document.body);
+    });
+    ///
+
+    const add = () => {
+        if (localStorage.getItem('basket') === null) {
+            localStorage.setItem('basket', JSON.stringify(basket));
+            setSummaryPriceToHeader(document.querySelector('.cart-total__value')!);
+            setCountItemsToCartButtonValue(document.querySelector('.cart-button__value')!);
+        } else {
+            const basketStr = <string>localStorage.getItem('basket');
+            const arrA = <BasketData[]>JSON.parse(basketStr);
+            if (!basketStr.includes(`"id":${obj.id}`)) {
+                const counter: { count: number } = { count: 1 };
+                arrA.push(Object.assign(obj, counter));
+                localStorage.setItem('basket', JSON.stringify(arrA));
+                addButton.innerText = 'Remove';
+                addButton.removeEventListener('click', add);
+                addButton.addEventListener('click', removeEvt);
+            }
+            setSummaryPriceToHeader(document.querySelector('.cart-total__value')!);
+            setCountItemsToCartButtonValue(document.querySelector('.cart-button__value')!);
+        }
+    };
+
+    const removeEvt = () => {
+        const arrB: BasketData[] = [...JSON.parse(localStorage.getItem('basket')!)];
+        arrB.forEach((el: BasketData, i: number) => {
+            el.id === obj.id ? arrB.splice(i, 1) : false;
+        });
+        localStorage.setItem('basket', JSON.stringify(arrB));
+        setSummaryPriceToHeader(document.querySelector('.cart-total__value')!);
+        setCountItemsToCartButtonValue(document.querySelector('.cart-button__value')!);
+        addButton.innerText = 'Add To Cart';
+        addButton.removeEventListener('click', removeEvt);
+        addButton.addEventListener('click', add);
+    };
+
+    function control() {
+        if (localStorage.getItem('basket') === null) {
+            localStorage.setItem('basket', JSON.stringify(basket));
+        } else {
+            const basketStr = <string>localStorage.getItem('basket');
+            const arrA = <BasketData[]>JSON.parse(basketStr);
+            if (basketStr.includes(`"id":${obj.id}`)) {
+                localStorage.setItem('basket', JSON.stringify(arrA));
+                addButton.innerText = 'Remove';
+                addButton.removeEventListener('click', add);
+                addButton.addEventListener('click', removeEvt);
+            }
+        }
+    }
+
+    addButton.addEventListener('click', add);
+    control();
+
+    ///
     breadcrumbs.querySelector('.breadcrumbs__item__store')!.addEventListener('click', () => {
         cardDetails.remove();
         const main = document.querySelector('.main') as HTMLElement;
-        renderMainContent(main, {products:store.sortedCards});
+        renderMainContent(main, { products: store.sortedCards });
     });
 
     targetNode.append(cardDetails);

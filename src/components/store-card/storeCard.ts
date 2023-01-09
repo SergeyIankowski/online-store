@@ -4,6 +4,7 @@ import { renderCardDetails } from '../card-details/card-details';
 import './store-card.scss';
 import { basket } from '../app/app';
 import { BasketData } from '../../interfaces/basket_data';
+import { setCountItemsToCartButtonValue, setSummaryPriceToHeader } from '../../utils/setHeaderValuesFromLocalStorage';
 
 export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: HTMLElement): void {
     const card: HTMLElement = document.createElement('div');
@@ -69,53 +70,57 @@ export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: 
     const add = () => {
         if (localStorage.getItem('basket') === null) {
             localStorage.setItem('basket', JSON.stringify(basket));
+            setSummaryPriceToHeader(document.querySelector('.cart-total__value')!);
+            setCountItemsToCartButtonValue(document.querySelector('.cart-button__value')!);
         } else {
-            const basketStr = <string> localStorage.getItem('basket');
-            const arrA = <BasketData[]> JSON.parse(basketStr);
-            if (!basketStr.includes(`"id":${obj.id}`)){
-                const counter: {count: number} = {count: 1};
+            const basketStr = <string>localStorage.getItem('basket');
+            const arrA = <BasketData[]>JSON.parse(basketStr);
+            if (!basketStr.includes(`"id":${obj.id}`)) {
+                const counter: { count: number } = { count: 1 };
                 arrA.push(Object.assign(obj, counter));
                 localStorage.setItem('basket', JSON.stringify(arrA));
                 addButton.innerText = 'Remove';
                 addButton.removeEventListener('click', add);
                 addButton.addEventListener('click', removeEvt);
-                console.log('1')
             }
+            setSummaryPriceToHeader(document.querySelector('.cart-total__value')!);
+            setCountItemsToCartButtonValue(document.querySelector('.cart-button__value')!);
         }
     };
 
     const removeEvt = () => {
-        const arrB = [...JSON.parse(localStorage.getItem('basket')!)]
+        const arrB: BasketData[] = [...JSON.parse(localStorage.getItem('basket')!)];
         arrB.forEach((el: BasketData, i: number) => {
-            el.id === obj.id ? arrB.splice(i, 1) : false
+            el.id === obj.id ? arrB.splice(i, 1) : false;
         });
         localStorage.setItem('basket', JSON.stringify(arrB));
+        setSummaryPriceToHeader(document.querySelector('.cart-total__value')!);
+        setCountItemsToCartButtonValue(document.querySelector('.cart-button__value')!);
         addButton.innerText = 'Add';
         addButton.removeEventListener('click', removeEvt);
         addButton.addEventListener('click', add);
     };
 
-    function control () {
-         if (localStorage.getItem('basket') === null) {
+    function control() {
+        if (localStorage.getItem('basket') === null) {
             localStorage.setItem('basket', JSON.stringify(basket));
         } else {
-            const basketStr = <string> localStorage.getItem('basket');
-            const arrA = <BasketData[]> JSON.parse(basketStr);
-            if (basketStr.includes(`"id":${obj.id}`)){
+            const basketStr = <string>localStorage.getItem('basket');
+            const arrA = <BasketData[]>JSON.parse(basketStr);
+            if (basketStr.includes(`"id":${obj.id}`)) {
                 localStorage.setItem('basket', JSON.stringify(arrA));
                 addButton.innerText = 'Remove';
                 addButton.removeEventListener('click', add);
                 addButton.addEventListener('click', removeEvt);
-                console.log('1')
             }
+        }
     }
-}
 
-    addButton.addEventListener('click', add)
-    control()
+    addButton.addEventListener('click', add);
+    control();
     detailsButton.addEventListener('click', () => {
         const main = document.querySelector('.main') as HTMLElement;
         clearPage(main);
         renderCardDetails(main, obj);
-    })
+    });
 }

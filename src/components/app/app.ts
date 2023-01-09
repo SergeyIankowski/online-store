@@ -5,17 +5,16 @@ import { Store } from '../global-store-component/store';
 import './app.scss';
 import { BasketData } from '../../interfaces/basket_data';
 
-
 export let basket: BasketData[] = new Array();
 
 export function renderApp(targetNode: HTMLElement): void {
     const app: HTMLDivElement = document.createElement('div');
     app.classList.add('app');
-    
+
     renderHeader(app);
     renderMain(app);
     renderFooter(app);
-    
+
     Store.init(app.querySelector('.products-board')!);
 
     targetNode.append(app);
@@ -23,5 +22,4 @@ export function renderApp(targetNode: HTMLElement): void {
             localStorage.setItem('basket', JSON.stringify(basket))
         }
     basket = JSON.parse(localStorage.getItem('basket')!);
-    
 }

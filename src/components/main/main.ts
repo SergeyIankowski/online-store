@@ -21,6 +21,6 @@ export function renderMainContent(targetNode: HTMLElement, obj: IncomeData): voi
 export function renderMain(targetNode: HTMLElement | DocumentFragment): void {
     const main: HTMLElement = document.createElement('main');
     main.classList.add('main');
-    
+
     targetNode.append(main);
 }
