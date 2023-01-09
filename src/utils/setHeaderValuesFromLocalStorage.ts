@@ -5,7 +5,8 @@ export function setSummaryPriceToHeader(targetNode: HTMLSpanElement) {
         const arrB: BasketData[] = [...JSON.parse(localStorage.getItem('basket')!)];
         let priceValue = 0;
         arrB.forEach((el) => {
-            priceValue += el.count * el.price;
+          const discountedPrice = Math.floor(el.price * ((100 - el.discountPercentage) / 100));
+            priceValue += el.count * discountedPrice;
         }, 0);
         targetNode.innerText = `$${priceValue}`;
     } else {
