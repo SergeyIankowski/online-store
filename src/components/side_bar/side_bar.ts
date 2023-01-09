@@ -1,9 +1,13 @@
+import { ProductData } from '../../interfaces/productData';
+import { searchDataItems } from '../../utils/searchItems';
+import { store } from '../global-store-component/store';
 import { copyBtnControl, resetBtnControl } from './btns_logic';
 import './side_bar.scss';
 import { renderSlider } from './slider/slider';
 
 export const category: Set<string> = new Set();
 export const brand: Set<string> = new Set();
+const filteredList: ProductData[] = new Array();
 
 export function renderSideBar(targetNode: HTMLElement): void {
     const container: HTMLElement = document.createElement('div');
@@ -34,7 +38,30 @@ export function renderSideBar(targetNode: HTMLElement): void {
         checkbox.setAttribute('id', el);
         div.append(checkbox, label);
         categoryUnorderedList.append(div);
+
+        checkbox.addEventListener('change', (e: Event) => {
+            const trgt = e.target as HTMLInputElement;
+            const initialData = store.getInitialCardsFromStore();
+            if(trgt.checked === true){
+                const foundData = searchDataItems(initialData, trgt.id);
+                foundData.forEach((el: ProductData) => filteredList.push(el))
+                console.log(filteredList)
+                store.setCardsToStoreAndRender(filteredList);
+            } else {
+                for(let i = filteredList.length - 1; i >= 0; i--) {
+                    filteredList[i]!.category === trgt.id ? filteredList.splice(i, 1) : false
+                    console.log(filteredList)
+                };
+                store.setCardsToStoreAndRender(filteredList);
+                if(filteredList.length === 0) {
+                    store.setCardsToStoreAndRender(initialData)
+                    
+                }
+            }
+            
+        })
     }
+
     categoryContainer.append(categoryUnorderedList);
 
     const brandContainer: HTMLElement = document.createElement('div');
@@ -53,7 +80,30 @@ export function renderSideBar(targetNode: HTMLElement): void {
         checkbox.setAttribute('id', el);
         div.append(checkbox, label);
         brandUnorderedList.append(div);
+
+        checkbox.addEventListener('change', (e: Event) => {
+            const trgt = e.target as HTMLInputElement;
+            const initialData = store.getInitialCardsFromStore();
+            if(trgt.checked === true){
+                const foundData = searchDataItems(initialData, trgt.id);
+                foundData.forEach((el: ProductData) => filteredList.push(el))
+                console.log(filteredList)
+                store.setCardsToStoreAndRender(filteredList);
+            } else {
+                for(let i = filteredList.length - 1; i >= 0; i--) {
+                    filteredList[i]!.brand === trgt.id ? filteredList.splice(i, 1) : false
+                    console.log(filteredList)
+                };
+                store.setCardsToStoreAndRender(filteredList);
+                if(filteredList.length === 0) {
+                    store.setCardsToStoreAndRender(initialData)
+                    
+                }
+            }
+            
+        })
     }
+    
     brandContainer.append(brandUnorderedList);
     container.append(bntsContainer, categoryContainer, brandContainer);
     targetNode.append(container);
