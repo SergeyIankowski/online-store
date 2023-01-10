@@ -5,6 +5,7 @@ import './store-card.scss';
 import { basket } from '../app/app';
 import { BasketData } from '../../interfaces/basket_data';
 import { setCountItemsToCartButtonValue, setSummaryPriceToHeader } from '../../utils/setHeaderValuesFromLocalStorage';
+import { router } from '../../modules/router';
 
 export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: HTMLElement): void {
     const card: HTMLElement = document.createElement('div');
@@ -122,5 +123,6 @@ export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: 
         const main = document.querySelector('.main') as HTMLElement;
         clearPage(main);
         renderCardDetails(main, obj);
+        router.navigateTo(`details/${obj.id}`)
     });
 }
