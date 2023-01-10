@@ -42,22 +42,20 @@ export function renderSideBar(targetNode: HTMLElement): void {
         checkbox.addEventListener('change', (e: Event) => {
             const trgt = e.target as HTMLInputElement;
             const initialData = store.getInitialCardsFromStore();
-            if(trgt.checked === true){
+            if (trgt.checked === true) {
                 const foundData = searchDataItems(initialData, trgt.id);
-                foundData.forEach((el: ProductData) => filteredList.push(el))
+                foundData.forEach((el: ProductData) => filteredList.push(el));
                 store.setCardsToStoreAndRender(filteredList);
             } else {
-                for(let i = filteredList.length - 1; i >= 0; i--) {
-                    filteredList[i]!.category === trgt.id ? filteredList.splice(i, 1) : false
-                };
+                for (let i = filteredList.length - 1; i >= 0; i--) {
+                    filteredList[i]!.category === trgt.id ? filteredList.splice(i, 1) : false;
+                }
                 store.setCardsToStoreAndRender(filteredList);
-                if(filteredList.length === 0) {
-                    store.setCardsToStoreAndRender(initialData)
-                    
+                if (filteredList.length === 0) {
+                    store.setCardsToStoreAndRender(initialData);
                 }
             }
-            
-        })
+        });
     }
 
     categoryContainer.append(categoryUnorderedList);
@@ -82,24 +80,22 @@ export function renderSideBar(targetNode: HTMLElement): void {
         checkbox.addEventListener('change', (e: Event) => {
             const trgt = e.target as HTMLInputElement;
             const initialData = store.getInitialCardsFromStore();
-            if(trgt.checked === true){
+            if (trgt.checked === true) {
                 const foundData = searchDataItems(initialData, trgt.id);
-                foundData.forEach((el: ProductData) => filteredList.push(el))
+                foundData.forEach((el: ProductData) => filteredList.push(el));
                 store.setCardsToStoreAndRender(filteredList);
             } else {
-                for(let i = filteredList.length - 1; i >= 0; i--) {
-                    filteredList[i]!.brand === trgt.id ? filteredList.splice(i, 1) : false
-                };
+                for (let i = filteredList.length - 1; i >= 0; i--) {
+                    filteredList[i]!.brand === trgt.id ? filteredList.splice(i, 1) : false;
+                }
                 store.setCardsToStoreAndRender(filteredList);
-                if(filteredList.length === 0) {
-                    store.setCardsToStoreAndRender(initialData)
-                    
+                if (filteredList.length === 0) {
+                    store.setCardsToStoreAndRender(initialData);
                 }
             }
-            
-        })
+        });
     }
-    
+
     brandContainer.append(brandUnorderedList);
     container.append(bntsContainer, categoryContainer, brandContainer);
     targetNode.append(container);

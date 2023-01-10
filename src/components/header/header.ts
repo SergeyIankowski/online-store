@@ -1,6 +1,7 @@
 import Bag from '../../assets/img/bag-icon.svg';
 import Cart from '../../assets/img/cart-icon.svg';
 import { BasketData } from '../../interfaces/basket_data';
+import { router } from '../../modules/router';
 import { clearPage } from '../../utils/clear_page';
 import { setCountItemsToCartButtonValue, setSummaryPriceToHeader } from '../../utils/setHeaderValuesFromLocalStorage';
 import { renderBasketPage } from '../basket/basket';
@@ -57,6 +58,7 @@ export function renderHeader(targetNode: HTMLElement | DocumentFragment): void {
         const main = document.querySelector('.main') as HTMLElement;
         clearPage(main);
         renderMainContent(main, { products: store.getSortedCardsFromStore() });
+        router.navigateTo('/');
     });
     cartButtonContainer.addEventListener('click', () => {
         const main = document.querySelector('.main') as HTMLElement;
@@ -67,6 +69,7 @@ export function renderHeader(targetNode: HTMLElement | DocumentFragment): void {
         } else {
             renderBasketPage(main, []);
         }
+        router.navigateTo('/cart');
     });
     targetNode.append(header);
 }

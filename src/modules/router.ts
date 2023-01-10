@@ -1,25 +1,66 @@
 import Router from '../../node_modules/vanilla-router/index';
+import { renderBasketPage } from '../components/basket/basket';
+import { renderPage404 } from '../components/page_404/page_404';
+import { BasketData } from '../interfaces/basket_data';
+import { clearPage } from '../utils/clear_page';
+// import { renderCardDetails } from '../components/card-details/card-details';
 
 function setLocation() {
     const { pathname, search } = window.location;
     return pathname + search;
 }
 
-const router = new Router({
+export const router = new Router({
     mode: 'history',
-    page404: (path) => {
-        console.log(`/ ${path} render 404`);
+    page404: () => {
+        const delay = () =>
+            setTimeout(() => {
+                const main: HTMLElement = document.querySelector('.main')!;
+                console.log(main);
+                renderPage404(main);
+            }, 400);
+
+        if (document.readyState == 'complete') {
+            delay();
+        } else {
+            document.onreadystatechange = function () {
+                if (document.readyState === 'complete') {
+                    delay();
+                }
+            };
+        }
     },
 });
 
-router.add('', () => {
-    console.log('Home Page');
-    console.log('render home page');
+router.add('', () => {});
+
+router.add('details/{name}', (name) => {
+    console.log(name);
 });
 
-router.add('products/(:any)', (name) => console.log(`render card-${name} details`));
+router.add('cart', () => {
+    const delay = () =>
+        setTimeout(() => {
+            const main: HTMLElement = document.querySelector('.main')!;
+            clearPage(main);
+            if (localStorage.getItem('basket') !== null) {
+                const arrB: BasketData[] = [...JSON.parse(localStorage.getItem('basket')!)];
+                renderBasketPage(main, arrB);
+            } else {
+                renderBasketPage(main, []);
+            }
+        }, 400);
 
-router.add('cart', () => console.log('render cart page'));
+    if (document.readyState == 'complete') {
+        delay();
+    } else {
+        document.onreadystatechange = function () {
+            if (document.readyState === 'complete') {
+                delay();
+            }
+        };
+    }
+});
 
 router.addUriListener();
 

@@ -1,16 +1,11 @@
-.main {
-    .container {
-        display: grid;
-        gap: 5px;
-        max-width: 1366px;
-        height: 800px;
-        margin: 0 auto;
-        .content {
-            display: grid;
-            place-self: center;
-            .text {
-                font: normal bold 30px/120% 'Roboto', sans-serif;
-            }
+.container-page-404 {
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh;
+        .text {
+            font: normal bold 40px/120% 'Roboto', sans-serif;
         }
     }
 }
