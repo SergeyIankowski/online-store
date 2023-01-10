@@ -19,7 +19,7 @@ export function renderApp(targetNode: HTMLElement): void {
 
     targetNode.append(app);
     if (localStorage.getItem('basket') === null) {
-            localStorage.setItem('basket', JSON.stringify(basket))
-        }
-    basket = JSON.parse(localStorage.getItem('basket')!)
+        localStorage.setItem('basket', JSON.stringify(basket));
+    }
+    basket = JSON.parse(localStorage.getItem('basket')!);
 }

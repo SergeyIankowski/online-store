@@ -8,10 +8,13 @@ export function renderBasketPage(targetNode: HTMLElement, data: BasketData[]) {
     basket.classList.add('basket');
 
     const wrapper: HTMLDivElement = document.createElement('div');
-    wrapper.classList.add('wrapper');
+    wrapper.classList.add('wrapper', 'wrapper__busket');
 
     const count = data.reduce((sum, item) => sum + item.count, 0);
-    const total = data.reduce((sum, item) => sum + item.price * item.count, 0);
+    const total = data.reduce(
+        (sum, item) => sum + item.count * Math.floor((item.price * (100 - item.discountPercentage)) / 100),
+        0
+    );
 
     const basketContainer: HTMLDivElement = document.createElement('div');
     basketContainer.classList.add('basket__cards-container', 'cards-container');
