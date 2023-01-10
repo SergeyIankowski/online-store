@@ -1,13 +1,12 @@
 import { BasketData } from '../../../interfaces/basket_data';
+import { clearPage } from '../../../utils/clear_page';
+import { setCountItemsToCartButtonValue, setSummaryPriceToHeader } from '../../../utils/setHeaderValuesFromLocalStorage';
+import { renderBasketPage } from '../basket';
 import './basket-card.scss';
 
 export function renderBasketCard(obj: BasketData, targetNode: HTMLElement): void {
     const basketCard: HTMLDivElement = document.createElement('div');
     basketCard.classList.add('basket__card-item', 'basket-card');
-
-    const basketCardNumber: HTMLParagraphElement = document.createElement('p');
-    basketCardNumber.classList.add('basket-card__number');
-    basketCardNumber.innerText = `${obj.id}`;
 
     const basketCardImage: HTMLImageElement = document.createElement('img');
     basketCardImage.classList.add('basket-card__image');
@@ -38,7 +37,7 @@ export function renderBasketCard(obj: BasketData, targetNode: HTMLElement): void
     basketCardPrice.innerText = '$';
     const basketCardPriceValue: HTMLSpanElement = document.createElement('span');
     basketCardPriceValue.classList.add('basket-card__price-value');
-    basketCardPriceValue.innerText = String(obj.price);
+    basketCardPriceValue.innerText = String(Math.floor(obj.price * (100 - obj.discountPercentage) / 100));
     basketCardPrice.append(basketCardPriceValue);
 
     const basketCardStock: HTMLParagraphElement = document.createElement('p');
@@ -54,10 +53,9 @@ export function renderBasketCard(obj: BasketData, targetNode: HTMLElement): void
     lessButton.classList.add('basket-card__count-button', 'basket-card__count-button_less');
     lessButton.innerText = '-';
 
-    const countInput: HTMLInputElement = document.createElement('input');
-    countInput.type = 'text';
+    const countInput: HTMLSpanElement = document.createElement('span');
     countInput.classList.add('basket-card__count-input');
-    countInput.value = `${obj.count}`;
+    countInput.innerText = `${obj.count}`;
 
     const moreButton: HTMLButtonElement = document.createElement('button');
     moreButton.innerText = '+';
@@ -65,7 +63,7 @@ export function renderBasketCard(obj: BasketData, targetNode: HTMLElement): void
 
     basketCardCountContainer.append(lessButton, countInput, moreButton);
 
-    basketCard.append(basketCardNumber, basketCardImage, basketCardInfo, basketCardCountContainer);
+    basketCard.append(basketCardImage, basketCardInfo, basketCardCountContainer);
 
     targetNode.append(basketCard);
 
@@ -75,8 +73,14 @@ export function renderBasketCard(obj: BasketData, targetNode: HTMLElement): void
                 if (el.id === obj.id) {
                     el.count++
                     localStorage.setItem('basket', JSON.stringify(arrA))
-                    countInput.value = el.count.toString()
-                    // TODO тут нужно будет вызвать перерендер страницы
+                    countInput.innerText = el.count.toString()
+
+                    const main = document.querySelector('.main') as HTMLElement;
+                    clearPage(main);
+                    renderBasketPage(main, arrA);
+                    setSummaryPriceToHeader(document.querySelector('.cart-total__value')!);
+                    setCountItemsToCartButtonValue(document.querySelector('.cart-button__value')!);
+                    
                 }
             })
     })
@@ -88,12 +92,22 @@ export function renderBasketCard(obj: BasketData, targetNode: HTMLElement): void
                 if(el.count === 1) {
                     arrB.splice(i, 1)
                     localStorage.setItem('basket', JSON.stringify(arrB))
-                    // TODO тут нужно будет вызвать перерендер страницы
+
+                    const main = document.querySelector('.main') as HTMLElement;
+                    clearPage(main);
+                    renderBasketPage(main, arrB);
+                    setSummaryPriceToHeader(document.querySelector('.cart-total__value')!);
+                    setCountItemsToCartButtonValue(document.querySelector('.cart-button__value')!);
                 } else {
                     el.count--
                     localStorage.setItem('basket', JSON.stringify(arrB))
-                    countInput.value = el.count.toString()
-                    // TODO тут нужно будет вызвать перерендер страницы
+                    countInput.innerText = el.count.toString()
+
+                    const main = document.querySelector('.main') as HTMLElement;
+                    clearPage(main);
+                    renderBasketPage(main, arrB);
+                    setSummaryPriceToHeader(document.querySelector('.cart-total__value')!);
+                    setCountItemsToCartButtonValue(document.querySelector('.cart-button__value')!);
                 }
             }
         })
