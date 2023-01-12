@@ -16,7 +16,6 @@ export const router = new Router({
         const delay = () =>
             setTimeout(() => {
                 const main: HTMLElement = document.querySelector('.main')!;
-                console.log(main);
                 renderPage404(main);
             }, 400);
 
@@ -34,8 +33,7 @@ export const router = new Router({
 
 router.add('', () => {});
 
-router.add('details/{name}', (name) => {
-    console.log(name);
+router.add('details/{name}', () => {
 });
 
 router.add('cart', () => {
