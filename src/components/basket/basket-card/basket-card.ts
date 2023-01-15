@@ -4,7 +4,6 @@ import {
     setSummaryPriceToHeader,
 } from '../../../utils/setHeaderValuesFromLocalStorage';
 import { renderSummary } from '../basket-summary/basket-summary';
-// import { renderBasketPage } from '../basket';
 import './basket-card.scss';
 
 export function renderBasketCard(obj: BasketData, targetNode: HTMLElement): void {

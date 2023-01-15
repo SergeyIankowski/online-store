@@ -136,7 +136,7 @@ export function renderCardDetails(targetNode: HTMLElement, obj: ProductData) {
         }
         renderBasketPopup(document.body);
     });
-    ///
+
 
     const add = () => {
         if (localStorage.getItem('basket') === null) {
@@ -190,7 +190,6 @@ export function renderCardDetails(targetNode: HTMLElement, obj: ProductData) {
     addButton.addEventListener('click', add);
     control();
 
-    ///
     breadcrumbs.querySelector('.breadcrumbs__item__store')!.addEventListener('click', () => {
         cardDetails.remove();
         const main = document.querySelector('.main') as HTMLElement;

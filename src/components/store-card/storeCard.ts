@@ -123,6 +123,6 @@ export function renderStoreCard(obj: ProductData, isSmall: boolean, targetNode: 
         const main = document.querySelector('.main') as HTMLElement;
         clearPage(main);
         renderCardDetails(main, obj);
-        router.navigateTo(`details/${obj.id}`)
+        router.navigateTo(`details/${obj.id}`);
     });
 }

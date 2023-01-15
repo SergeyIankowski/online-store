@@ -3,7 +3,6 @@ import { renderBasketPage } from '../components/basket/basket';
 import { renderPage404 } from '../components/page_404/page_404';
 import { BasketData } from '../interfaces/basket_data';
 import { clearPage } from '../utils/clear_page';
-// import { renderCardDetails } from '../components/card-details/card-details';
 
 function setLocation() {
     const { pathname, search } = window.location;
@@ -33,8 +32,7 @@ export const router = new Router({
 
 router.add('', () => {});
 
-router.add('details/{name}', () => {
-});
+router.add('details/{name}', () => {});
 
 router.add('cart', () => {
     const delay = () =>
