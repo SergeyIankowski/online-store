@@ -1,0 +1,11 @@
+.container-page-404 {
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh;
+        .text {
+            font: normal bold 40px/120% 'Roboto', sans-serif;
+        }
+    }
+}

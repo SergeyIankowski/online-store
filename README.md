@@ -1,1 +1,2 @@
-This is command Online-Store task for the Rolling Scopes School
+## Site deploy: 
+[Online-zoo](https://online-store-73.netlify.app)
